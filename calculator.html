@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalkulator podatkowy</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
+    <script src="scripts/calculator.js" defer></script>
+
+    <style>
+      label, input, button {
+	  display: block;
+      }
+      p {
+	  margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid bg-primary">
+      <div class="container align-middle">
+	<h1 class="text-primary text-white">Kalkulator podatkowy</h1>
+	  <label for="pit-input" class="lead text-white text-start fw-bold">Dochód w roku podatkowym:</label>
+	  <input type="number" id="pit-input" step="1000">
+
+	  <label for="polski-lad-modes" class="mt-2 lead text-white text-start fw-bold">Sposób rozliczania:</label>
+	  <select name="taxation-modes" id="polski-lad-modes">
+	    <option value="polski-lad" selected>"Polski Ład"</option>
+	    <option value="polski-lad-2">"Polski Ład 2.0"</option>
+	  </select>
+
+
+	  <label for="taxation-types" class="mt-2 lead text-white text-start fw-bold">Sposób opodatkowania:</label>
+	  <select name="taxation-types" id="taxation-types">
+	    <option value="standard" selected>Standardowa skala podatkowa</option>
+	    <option value="line">Podatek liniowy</option>
+	    <option value="lumpSum">Ryczałt ewidencjonowany</option>
+	    <option value="taxationCard">Karta Podatkowa</option>
+	  </select>
+
+
+	  <label for="healthcare-reduction-input" class="mt-2 lead text-white text-start fw-bold" style="display: none;">Odliczenie składki zdrowotnej od przychodu/dochodu</label>
+	  <input type="checkbox" id="healthcare-reduction-input" style="display: none;">
+
+	  <label for="middle-class-reduction-checkbox" class="mt-2 lead text-white text-start fw-bold">Ulga dla klasy średniej</label>
+	  <input type="checkbox" id="middle-class-reduction-checkbox">
+
+	  <label for="company-types">Rodzaj działalności/świadczonych usług:</label>
+	  <select name="company-types" id="company-types" style="display: none;">
+	    <option value="17" selected>Lekarz</option>
+	    <option value="17">Lekarz stomatologii</option>
+	    <option value="17">Weterynarz</option>
+	    <option value="17">Technik dentystyczny</option>
+	    <option value="17">Felczer, położna, pielęgniarka</option>
+	    <option value="17">Tłumacz</option>
+	    <option value="17">Nauczyciel korepetytor</option>
+	    <option value="15">Usługi parkingowe</option>
+	    <option value="15">Usługi reklamowe/badania opinii publicznej</option>
+	    <option value="15">Usługi hotelarskie</option>
+	    <option value="15">Usługi fotograficzne</option>
+	    <option value="15">Reprodukcja komputerowych nośników informacji</option>
+	    <option value="15">Obsługa central radio-taxi</option>
+	    <option value="15">Pośrednictwo w sprzedaży hurtowej</option>
+	    <option value="15">Pośrednictwo w sprzedaży hurtowej samochodów osobowych oraz części i akcesoriów do nich</option>
+	    <option value="15">Pośrednictwo w sprzedaży motocykli oraz części i akcesoriów do nich</option>
+	    <option value="14">Usługi w zakresie opieki zdrowotnej</option>
+	    <option value="14">Usługi architektoniczne i inżynierskie</option>
+	    <option value="14">Usługi w zakresie specjalistycznego projektowania (PKWiU 74.1); </option>
+	    <option value="12">Wydawanie pakietów gier komputerowych , z wyłączeniem publikowania gier komputerowych w trybie on-line</option>
+	    <option value="12">Wydawanie pakietów oprogramowania systemowego</option>
+	    <option value="12">Wydawanie pakietów oprogramowania użytkowego</option>
+	    <option value="12">Wydawanie oprogramowania komputerowego pobieranego z Internetu, z wyłączeniem pobierania oprogramowania w trybie on-line</option>
+	    <option value="12">Usługi doradztwa w sprawie sprzętu komputerowego</option>
+	    <option value="12">Usługi związane z oprogramowaniem</option>
+	    <option value="12">Usługi związane z doradztwem w zakresie oprogramowanie</option>
+	    <option value="12">Usługi w zakresie instalowanie oprogramowania</option>
+	    <option value="12">Usługi związane z zarządzaniem siecią i systemami informatycznymi</option>
+	    <option value="8.5">Wynajmowanie nieruchomości</option>
+	    <option value="8.5">Świadczenie usług związanych z zakwaterowaniem</option>
+	    <option value="8.5">Badania naukowe</option>
+	    <option value="8.5">Wynajem środków transportu</option>
+	    <option value="8.5">Gastronomia (w zakresie sprzedaży napojów z zawartością alkoholu powyżej 1.5%)</option>
+	    <option value="8.5">Zwalczanie pożarów i zapobieganie im</option>
+	    <option value="8.5">Edukacja</option>
+	    <option value="8.5">Biblioteka, archiwum, muzeum</option>
+	    <option value="5.5">Prowadzenie działalności wytwórczej</option>
+	    <option value="5.5">Roboty budowlane</option>
+	    <option value="5.5">Sprzedaż biletów, żetonów, znaczków pocztowych</option>
+	    <option value="3">Gastronomia (z wyjątkiem alkoholu)</option>
+	    <option value="3">Handel</option>
+	    <option value="3">Rybactwo</option>
+	    <option value="3">Produkcja zwierzęca</option>
+	    <option value="2">Wytwór produktów roślinnych i zwierzęcych w sposób inny niż przemysłowy</option>
+	  </select>
+
+	  <label for="vat-percentages" class="mt-2 lead text-white text-start fw-bold">Stawka podatku VAT:</label>
+	  <select name="taxation-types" id="vat-percentages">
+	    <option value="23">23%</option>
+	    <option value="8">8%</option>
+	    <option value="5">5%</option>
+	    <option value="0">0%</option>
+	  </select>
+	  
+	  <label for="sales-income" class="mt-2 lead text-white text-start fw-bold">Przychód Netto ze sprzedaży: </label>
+	  <input type="number" id="sales-income" step="1000">
+
+	  <label for="property-tax-cost" class="mt-2 lead text-white text-start fw-bold">Koszt podatku od nieruchomości: </label>
+	  <input type="number" id="property-tax-cost" step="10">
+
+	  <label for="civil-legal-tax-cost" class="mt-2 lead text-white text-start fw-bold">Wysokość podatku od czynności cywilno prawnych: </label>
+	  <input type="number" id="civil-legal-tax-cost" step="10">
+
+	<button class="confirmation-button mt-2 btn-success rounded fw-bold">Zatwierdź</button>
+      <p class="pit-value-paragraph lead fw-bold text-white"><abbr>PIT</abbr>: </p>
+      <p class="healthcare-value-paragraph lead fw-bold text-white">Składka zdrowotna roczna: </p>
+      <p class="vat-value-paragraph lead fw-bold text-white">VAT: </p>
+      <p class="property-value-paragraph lead fw-bold text-white">Podatek od nieruchomości: </p>
+      <p class="civil-legal-value-paragraph lead fw-bold text-white">Podatek od czynności cywilno-prawnych: </p>
+      </div>
+    </div>
+    <footer class="container-fluid text-warning bg-secondary">Uwaga! Niniejszy kalkulator podaje wartości orientacyjne.
+      W celu realnego i rzetelnego obliczenia podatków do zapłacenia należy skontaktować się z profesjonalnym księgowym, bądź radcą podatkowym</footer>
+  </body>
+</html>
+
