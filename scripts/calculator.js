@@ -242,7 +242,7 @@ function formatInputNumbers(inputElements) {
       return;
     }
 
-    let number = Number(value.replace(/\s/g, ''));
+    let number = Number(value.replace(/\s|[^\d\.]/g, ''));
     $(this).val(number.toLocaleString('pl-PL'));
   });
 }
