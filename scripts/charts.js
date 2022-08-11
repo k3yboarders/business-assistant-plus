@@ -1,24 +1,45 @@
 const baseCurrency = 'EUR';
 const toExchange = 'PLN';
 
-let urlBase = 'https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_date=2020-04-04&symbols=PLN&base=USD';
+let url = `https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_date=2021-04-04&symbols=${toExchange}&base=${baseCurrency}`;
 
 const ctx = document.getElementsByClassName('chart')[0].getContext('2d');
+const gradient = ctx.createLinearGradient(0,0,0,400);
+gradient.addColorStop(0, 'rgba(255,0,0,.3)');
+gradient.addColorStop(1, 'rgba(255,0,0,0)');
 const currencyChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: `Kurs ${baseCurrency} na ${toExchange}`,
-            data: [],
-            fill: false,
-            borderColor: 'rgb(192,75,75)',
-            tension: 0.3
-        }]
+
+  type: 'line',
+  data: {
+    labels: [],
+    datasets: [{
+        label: `Koszt ${baseCurrency} w ${toExchange}`,
+        data: [],
+        fill: true,
+        clip: false,
+        borderColor: 'rgba(255,0,0,.5)',
+        pointBorderColor: 'rgba(255,0,0,0)',
+        tension: 1,
+        backgroundColor: gradient
+      }
+    ]
+  },
+  options: {
+    scales: {
+      y: {
+        grid: {
+            color: 'rgba(100,100,100,.5)',
+            lineWidth: 3
+        }
+      },
+      x: {
+        display: false
+      }
     }
+  }
 })
 
-fetch(`${urlBase}`)
+fetch(`${url}`)
 .then(res => res.json())
 .then((out) => {
     const rates = Object.entries(out.rates);
@@ -28,5 +49,3 @@ fetch(`${urlBase}`)
     }
     currencyChart.update();
 })  
-
-
