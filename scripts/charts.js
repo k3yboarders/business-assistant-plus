@@ -1,38 +1,32 @@
-const currencies = ['EUR', 'USD'];
+const baseCurrency = 'EUR';
+const toExchange = 'PLN';
 
-let urlBase = 'https://api.nbp.pl/api/exchangerates/rates/a';
+let urlBase = 'https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_date=2020-04-04&symbols=PLN&base=USD';
 
 const ctx = document.getElementsByClassName('chart')[0].getContext('2d');
 const currencyChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
-        labels: currencies,
+        labels: [],
         datasets: [{
-            label: 'W przeliczeniu na złoty',
+            label: `Kurs ${baseCurrency} na ${toExchange}`,
             data: [],
-            backgroundColor: [
-                'rgb(255, 100, 100)',
-                'rgb(100, 255, 100)',
-            ],
-            borderRadiues: 3
+            fill: false,
+            borderColor: 'rgb(192,75,75)',
+            tension: 0.3
         }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: false
-            }
-        }
     }
 })
 
-for (const cur of currencies) {
-    fetch(`${urlBase}/${cur}`)
-    .then(res => res.json())
-    .then((out) => {
-        currencyChart.data.datasets[0].data.push(out.rates[0].mid);
-        currencyChart.update();
-    })  
-};
+fetch(`${urlBase}`)
+.then(res => res.json())
+.then((out) => {
+    const rates = Object.entries(out.rates);
+    for(let i = 0; i <  rates.length; i++) {
+        currencyChart.data.labels.push(rates[i][0]);
+        currencyChart.data.datasets[0].data.push(rates[i][1].PLN);
+    }
+    currencyChart.update();
+})  
 
 
