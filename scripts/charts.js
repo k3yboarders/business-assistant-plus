@@ -5,8 +5,8 @@ let url = `https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_da
 
 const ctx = document.getElementsByClassName('chart')[0].getContext('2d');
 const gradient = ctx.createLinearGradient(0,0,0,400);
-gradient.addColorStop(0, 'rgba(255,0,0,.3)');
-gradient.addColorStop(1, 'rgba(255,0,0,0)');
+gradient.addColorStop(0, 'rgba(255,255,0,.3)');
+gradient.addColorStop(1, 'rgba(255,255,0,0)');
 const currencyChart = new Chart(ctx, {
 
   type: 'line',
@@ -17,23 +17,36 @@ const currencyChart = new Chart(ctx, {
         data: [],
         fill: true,
         clip: false,
-        borderColor: 'rgba(255,0,0,.5)',
-        pointBorderColor: 'rgba(255,0,0,0)',
-        tension: 1,
+        borderColor: 'rgba(155,155,0,.8)',
+        pointBorderColor: 'rgba(0,0,0,0)',
+        pointBackgroundColor: 'rgba(0,0,0,0)',
+        pointBorderWidth: .1,
+        tension: .1,
         backgroundColor: gradient
       }
     ]
   },
   options: {
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    interaction: {
+      mode: 'index',
+      intersect: false,
+      axis: 'x'
+    },
     scales: {
       y: {
         grid: {
             color: 'rgba(100,100,100,.5)',
-            lineWidth: 3
+            lineWidth: 5,
+            drawBorder: false
         }
       },
       x: {
-        display: false
+        display: false,
       }
     }
   }
