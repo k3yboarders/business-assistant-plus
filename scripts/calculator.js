@@ -237,10 +237,15 @@ function isNonStandardType(taxationType) {
 function formatInputNumbers(inputElements) {
   inputElements.each(function () {
     let value = $(this).val();
-    value = value.replace(',', '.');
+    value = value.replace(/,/g, '.');
+    if(value === '.') {
+      $(this).val('');
+      return;
+    }
     if (value.indexOf('.') !== -1 && value.match(/\./g).length > 1)
       value = value.slice(0, -1);
     if (value.endsWith('.') || value === '') {
+      $(this).val(value.replace('.', ','));
       return;
     }
 
