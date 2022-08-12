@@ -31,4 +31,8 @@
       <Folder Include="Areas\Identity\Data" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="Views\Shared\_LayoutCalculator.cshtml.css" />
+    </ItemGroup>
+
 </Project>

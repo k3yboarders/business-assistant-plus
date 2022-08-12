@@ -17,7 +17,14 @@ public class HomeController : Controller
     {
         return View();
     }
-
+    public IActionResult Calculator()
+    {
+        return View();
+    }
+    public IActionResult Chart()
+    {
+        return View();
+    }
     public IActionResult Privacy()
     {
         return View();
