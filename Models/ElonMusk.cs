@@ -2,6 +2,6 @@ namespace CMP.Models;
 
 public class ElonMusk
 {
-    public string ElonMuskId { get; set; }
-    public string Quote { get; set; }
+    public int ElonMuskId { get; set; } = 0;
+    public string Quote { get; set; } = "";
 }
