@@ -9,7 +9,7 @@ A simple company management panel for modern entrepreneurs in the browser. Acces
 - Friendly **User Interface**
 - **Tax Calculator** included
 - Follow **currencies and crypto** prices with professional looking charts
-- Get motivated by wonderful quotes from one of the best businessmen in the world ( featuring **Elon Musk**)
+- Get motivated by wonderful quotes from one of the best businessmen in the world ( featuring **Elon Musk** )
 - Developed in stable and fast Microsoft ASP.NET framework
 
 ## Installation <a name="building"></a>
