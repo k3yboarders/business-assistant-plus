@@ -1,5 +1,5 @@
 <p align="center">
-<img src="/docs/assets/project_logo.png">
+<img src="/docs/assets/project_logo.svg">
 </p>
 
 # Business Assistant+
