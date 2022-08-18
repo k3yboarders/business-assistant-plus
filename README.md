@@ -1,4 +1,7 @@
-![Project Logo](/docs/assets/project_logo.png)
+<p align="center">
+<img src="/docs/assets/project_logo.png">
+</p>
+
 # Business Assistant+
 A simple company management panel for modern entrepreneurs in the browser. Access it anywhere at any time.
 # Table of contents
