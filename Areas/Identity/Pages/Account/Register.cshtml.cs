@@ -10,6 +10,9 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using CMP.Data;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,6 +22,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using CMP.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CMP.Areas.Identity.Pages.Account
 {
@@ -30,7 +34,7 @@ namespace CMP.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
+        private readonly ApplicationDbContext _databaseContext;
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
@@ -105,7 +109,13 @@ namespace CMP.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
-
+            [Required]
+            [Display(Name = "Taxation Type")]
+            public TaxationType TaxationType { get; set; }
+            
+            [Required]
+            [Display(Name = "Type of Activity ")]
+            public TypeOfActivity TypeOfActivity { get; set; }
         }
 
 
@@ -113,6 +123,8 @@ namespace CMP.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //IEnumerable<TypeOfActivity> types = 
+            //ViewData["Type"] = new SelectList(types.ToList(), "TypeOfActivityId", "ActivityName");
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -131,10 +143,16 @@ namespace CMP.Areas.Identity.Pages.Account
                 {
                     user.LastName = Input.LastName;
                 }
-
-                user.TaxationTypeId = 0;
-                user.TypeOfActivityId = 0;
+                if (Input.TaxationType != user.TaxationType)
+                {
+                    user.TaxationType = Input.TaxationType;
+                }
                 
+                if (Input.TypeOfActivity != user.TypeOfActivity)
+                {
+                    user.TypeOfActivity = Input.TypeOfActivity;
+                }
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);

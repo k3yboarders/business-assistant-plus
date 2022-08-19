@@ -9,6 +9,7 @@
 
     <ItemGroup>
         <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+        <None Include="wwwroot\img\project_logo.png" />
     </ItemGroup>
 
     <ItemGroup>
