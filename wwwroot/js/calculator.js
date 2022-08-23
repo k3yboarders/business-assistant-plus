@@ -91,13 +91,11 @@ function calculateMiddleClassReduction(income) {
 }
 
 function disableMiddleClassReductionCheckbox() {
-  $('label[for="middle-class-reduction-checkbox"]').hide();
-  $('#middle-class-reduction-checkbox').hide();
+  $('.md-reduction-container').hide();
 }
 
 function enableMiddleClassReductionCheckbox() {
-  $('label[for="middle-class-reduction-checkbox"]').show();
-  $('#middle-class-reduction-checkbox').show();
+  $('.md-reduction-container').show();
 }
 
 function resetErrorState(inputField) {
@@ -118,21 +116,21 @@ function showCompanyTypes() {
 }
 
 function hideHealthcareReduction() {
-  $('label[for="healthcare-reduction-input"]').hide();
-  $('#healthcare-reduction-input').hide();
+  $('.healthcare-container').hide();
 }
 
 function showHealthcareReduction() {
-  $('label[for="healthcare-reduction-input"]').show();
-  $('#healthcare-reduction-input').show();
+  $('.healthcare-container').show();
 }
 
 function enterErrorState(inputField) {
-  inputField.addClass('border-danger');
+  $('form').addClass('was-validated');
+  // inputField.addClass('was-validated');
   $('.confirmation-button').prop('disabled', true).addClass('btn-danger');
 }
 
 function changeToLumpSumMode() {
+  $('.tax-card-percent').hide();
   changeToNormalMode();
   $('label[for="pit-input"]').text('Przychód w roku podatkowym:');
   showCompanyTypes();
@@ -145,16 +143,9 @@ function changeToTaxationCard() {
   $('label[for="healthcare-reduction-input"]').text(
     'Odliczenie składki zdrowotnej od podatku'
   );
-  const percentageLabel = $('label[for="polski-lad-modes"]').clone();
-  percentageLabel.text('Oprocentowanie ustalone przez Urząd Skarbowy:');
-  percentageLabel.attr('for', 'percentage-input');
-
   disableMiddleClassReductionCheckbox();
   hideCompanyType();
-
-  const percentageInput = $('<input type="number" id="percentage-input">');
-  $('.confirmation-button').before(percentageLabel);
-  percentageLabel.after(percentageInput);
+  $('.tax-card-percent').show();
 }
 
 function changeToNormalMode() {
@@ -173,8 +164,7 @@ function changeToNormalMode() {
   }
 
   hideCompanyType();
-  $('label[for="percentage-input"]').remove();
-  $('#percentage-input').remove();
+  $('.tax-card-percent').hide();
 }
 
 function calculateHealthcareTax(income, typeOfTaxation) {
@@ -209,19 +199,17 @@ function calculateHealthcareTax(income, typeOfTaxation) {
 }
 
 function calculateVAT(income, percentage) {
+  if(isNaN(income))
+    return 0;
   return income * percentage;
 }
 
-function validateInputFields(inputFields) {
-  let returnValue = true;
-  inputFields.each(function () {
-    const value = parseFloat($(this).val());
-    if (isNaN(value)) {
-      enterErrorState($(this));
-      returnValue = false;
-    }
-  });
-  return returnValue;
+function validateInputFields(inputField) {
+  if(isNaN(parseFloat(inputField.val()))) {
+    enterErrorState(inputField);
+    return false;
+  }
+  return true;
 }
 
 function isNonStandardType(taxationType) {
@@ -295,7 +283,6 @@ $('#company-types').on('change', () => {
 });
 
 $('.container').on('input', 'input[type="text"]', function () {
-  formatInputNumbers($(this));
   const income = parseFloat($(this).val());
   const twoMillionEuros = 9188200;
   const taxType = $('#taxation-types').val();
@@ -314,9 +301,11 @@ $('.container').on('input', 'input[type="text"]', function () {
     taxType !== typesOfPITTaxation.standard
   ) {
     disableMiddleClassReductionCheckbox();
+    formatInputNumbers($(this));
     return;
   }
   enableMiddleClassReductionCheckbox();
+  formatInputNumbers($(this));
 });
 
 $('.confirmation-button').on('click', () => {
@@ -336,8 +325,8 @@ $('.confirmation-button').on('click', () => {
     parseFloat($('#sales-income').val()),
     parseInt($('#vat-percentages').val()) / 100
   ).toFixed(2);
-  const propertyTax = parseFloat($('#property-tax-cost').val()).toFixed(2);
-  const civilLegalTax = parseFloat($('#civil-legal-tax-cost').val()).toFixed(2);
+  const propertyTax = $('#property-tax-cost').val() === ''? 0 : parseFloat($('#property-tax-cost').val()).toFixed(2); 
+  const civilLegalTax = $('#civil-legal-tax-cost').val() === ''? 0 : parseFloat($('#civil-legal-tax-cost').val()).toFixed(2);
   let pit = 0;
   let percentage;
 
@@ -373,44 +362,41 @@ $('.confirmation-button').on('click', () => {
     style: 'currency',
     currency: 'PLN',
   };
-  $('.pit-value-paragraph').text(
-    'PIT: ' + Number(pit).toLocaleString('pl-PL', localeOptions)
+  $('.pit-value-cell + td').html(
+    Number(pit).toLocaleString('pl-PL', localeOptions)
   );
-  $('.healthcare-value-paragraph').text(
-    'Składka zdrowotna roczna: ' +
+  $('.healthcare-value-cell + td').text(
       Number(healthcareTax).toLocaleString('pl-PL', localeOptions)
   );
-  $('.vat-value-paragraph').text(
-    'VAT: ' + Number(vat).toLocaleString('pl-PL', localeOptions)
+  $('.vat-value-cell + td').html(
+     Number(vat).toLocaleString('pl-PL', localeOptions)
   );
-  $('.property-value-paragraph').text(
-    'Podatek od nieruchomości: ' +
+  $('.property-value-cell + td').text(
       Number(propertyTax).toLocaleString('pl-PL', localeOptions)
   );
-  $('.civil-legal-value-paragraph').text(
-    'Podatek od czynności cywilno-prawnych: ' +
+  $('.civil-legal-value-cell + td').text(
       Number(civilLegalTax).toLocaleString('pl-PL', localeOptions)
   );
 
-  const sumOfTaxes = $('.result-paragraph').length
-    ? $('.result-paragraph')
-    : $('.pit-value-paragraph').clone();
+  const sumOfTaxes = $('.result-cell');
   const numericalSum =
     parseFloat(pit) +
     parseFloat(healthcareTax) +
     parseFloat(vat) +
     parseFloat(propertyTax) +
     parseFloat(civilLegalTax);
-  sumOfTaxes.removeClass('pit-value-paragraph');
-  sumOfTaxes.addClass('result-paragraph');
   sumOfTaxes.text(
-    'Razem: ' + numericalSum.toLocaleString('pl-PL', localeOptions)
+    numericalSum.toLocaleString('pl-PL', localeOptions)
   );
-  $('.civil-legal-value-paragraph').after(sumOfTaxes);
+  $('table').fadeIn();
   formatInputNumbers($('input[type="text"]'));
 });
+$('form').on('submit', event => {
+  event.preventDefault();
+})
 
 jQuery(() => {
   $('input').val('');
+  $('table').fadeOut();
   $('select').prop('selectedIndex', 0);
 });

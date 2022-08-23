@@ -2,22 +2,24 @@
 	ViewData["Title"] = "Kalkulator podatkowy";
 	Layout = "_LayoutCalculator";
 }
+<div class="container align-middle">
+	<h1 class="text-dark">Kalkulator podatkowy</h1>
+	<form novalidate>
+	  <div>
+	    <label for="pit-input" class="lead text-black form-label fw-bold">Dochód w roku podatkowym</label>
+	    <input type="text" id="pit-input" class="form-control" required>
+	    <div class="invalid-feedback fw-bold lead fs-6">Proszę uzupełnić to pole</div>
+	  </div>
 
-<div class="container-fluid bg-primary">
-      <div class="container align-middle">
-	<h1 class="text-primary text-white">Kalkulator podatkowy</h1>
-	  <label for="pit-input" class="lead text-white text-start fw-bold">Dochód w roku podatkowym:</label>
-	  <input type="text" id="pit-input">
-
-	  <label for="polski-lad-modes" class="mt-2 lead text-white text-start fw-bold">Sposób rozliczania:</label>
-	  <select name="taxation-modes" id="polski-lad-modes">
-	    <option value="polski-lad" selected>"Polski Ład"</option>
+	  <label for="polski-lad-modes" class="mt-2 lead text-dard fw-bold form-label">Sposób rozliczania</label>
+	  <select name="taxation-modes" id="polski-lad-modes" class="form-select">
+	    <option value="polski-lad">"Polski Ład"</option>
 	    <option value="polski-lad-2">"Polski Ład 2.0"</option>
 	  </select>
 
 
-	  <label for="taxation-types" class="mt-2 lead text-white text-start fw-bold">Sposób opodatkowania:</label>
-	  <select name="taxation-types" id="taxation-types">
+	  <label for="taxation-types" class="mt-2 lead text-dark fw-bold form-label">Sposób opodatkowania</label>
+	  <select name="taxation-types" id="taxation-types" class="form-select">
 	    <option value="standard" selected>Standardowa skala podatkowa</option>
 	    <option value="line">Podatek liniowy</option>
 	    <option value="lumpSum">Ryczałt ewidencjonowany</option>
@@ -25,14 +27,18 @@
 	  </select>
 
 
-	  <label for="healthcare-reduction-input" class="mt-2 lead text-white text-start fw-bold" style="display: none;">Odliczenie składki zdrowotnej od przychodu/dochodu</label>
-	  <input type="checkbox" id="healthcare-reduction-input" style="display: none;">
+	  <div class="form-check healthcare-container mt-2" style="display: none;">
+	    <input type="checkbox" id="healthcare-reduction-input" class="form-check-input">
+	    <label for="healthcare-reduction-input" class="text-dark fw-bold form-check-label">Odliczenie składki zdrowotnej od przychodu/dochodu</label>
+	  </div>
 
-	  <label for="middle-class-reduction-checkbox" class="mt-2 lead text-white text-start fw-bold">Ulga dla klasy średniej</label>
-	  <input type="checkbox" id="middle-class-reduction-checkbox">
+	  <div class="form-check mt-2 md-reduction-container">
+	    <input type="checkbox" id="middle-class-reduction-checkbox" class="form-check-input">
+	    <label for="middle-class-reduction-checkbox" class="text-dark fw-bold form-check-label">Ulga dla klasy średniej</label>
+	  </div>
 
-	  <label for="company-types" class="mt-2 lead text-white text-start fw-bold" style="display: none;">Rodzaj działalności/świadczonych usług:</label>
-	  <select name="company-types" id="company-types" style="display: none;">
+	  <label for="company-types" class="mt-2 lead text-dark text-start fw-bold form-label" style="display: none;">Rodzaj działalności/świadczonych usług</label>
+	  <select name="company-types" id="company-types" style="display: none;" class="form-select">
 	    <option value="17" selected>Lekarz</option>
 	    <option value="17">Lekarz stomatologii</option>
 	    <option value="17">Weterynarz</option>
@@ -79,28 +85,60 @@
 	    <option value="2">Wytwór produktów roślinnych i zwierzęcych w sposób inny niż przemysłowy</option>
 	  </select>
 
-	  <label for="vat-percentages" class="mt-2 lead text-white text-start fw-bold">Stawka podatku VAT:</label>
-	  <select name="taxation-types" id="vat-percentages">
+	  <label for="vat-percentages" class="lead text-dark text-start fw-bold form-label">Stawka podatku VAT</label>
+	  <select name="taxation-types" id="vat-percentages" class="form-select">
 	    <option value="23">23%</option>
 	    <option value="8">8%</option>
 	    <option value="5">5%</option>
 	    <option value="0">0%</option>
 	  </select>
 	  
-	  <label for="sales-income" class="mt-2 lead text-white text-start fw-bold">Przychód Netto ze sprzedaży: </label>
-	  <input type="text" id="sales-income">
+	  <label for="sales-income" class="lead text-dark text-start fw-bold form-label">Przychód Netto ze sprzedaży</label>
+	  <input type="text" id="sales-income" class="form-control">
 
-	  <label for="property-tax-cost" class="mt-2 lead text-white text-start fw-bold">Koszt podatku od nieruchomości: </label>
-	  <input type="text" id="property-tax-cost">
+	  <label for="property-tax-cost" class="lead text-dark text-start fw-bold form-label">Koszt podatku od nieruchomości</label>
+	  <input type="text" id="property-tax-cost" class="form-control">
 
-	  <label for="civil-legal-tax-cost" class="mt-2 lead text-white text-start fw-bold">Wysokość podatku od czynności cywilno prawnych: </label>
-	  <input type="text" id="civil-legal-tax-cost">
+	  <label for="civil-legal-tax-cost" class="lead text-dark text-start fw-bold form-label">Wysokość podatku od czynności cywilno-prawnych</label>
+	  <input type="text" id="civil-legal-tax-cost" class="form-control">
 
-	<button class="confirmation-button mt-2 btn-success rounded fw-bold">Zatwierdź</button>
-      <p class="pit-value-paragraph lead fw-bold text-white"><abbr>PIT</abbr>: </p>
-      <p class="healthcare-value-paragraph lead fw-bold text-white">Składka zdrowotna roczna: </p>
-      <p class="vat-value-paragraph lead fw-bold text-white">VAT: </p>
-      <p class="property-value-paragraph lead fw-bold text-white">Podatek od nieruchomości: </p>
-      <p class="civil-legal-value-paragraph lead fw-bold text-white">Podatek od czynności cywilno-prawnych: </p>
-      </div>
-    </div>
+	  <div class="tax-card-percent" style="display: none;">
+	    <label for="percentage-input" class="mt-2 lead text-dark text-start fw-bold form-label">Oprocentowanie ustalone przez <abbr title="Urząd Skarbowy">US</abbr></label>
+	    <input type="text" id="percentage-input" class="form-control" required>
+	    <div class="invalid-feedback fw-bold lead fs-6">Proszę uzupełnić to pole</div>
+	  </div>
+
+	  <button class="confirmation-button btn btn-success rounded fw-bold mt-2">Zatwierdź</button>
+	 </form>
+	<table class="table table-hover" style="display: none;">
+	  <tbody>
+	    <tr>
+	      <td class="pit-value-cell lead fw-bold text-dark"><abbr title="Personal Income Tax">PIT</abbr></td>
+	      <td class="text-danger fw-bold lead"></td>
+	    </tr>
+	    <tr>
+	      <td class="healthcare-value-cell lead fw-bold text-dark">Składka zdrowotna roczna</td>
+	      <td class="text-danger fw-bold lead"></td>
+	    </tr>
+	    <tr>
+	      <td class="vat-value-cell lead fw-bold text-dark"><abbr title="Value-added Tax">VAT</abbr></td>
+	      <td class="text-danger fw-bold lead"></td>
+	    </tr>
+	    <tr>
+	      <td class="property-value-cell lead fw-bold text-dark">Podatek od nieruchomości</td>
+	      <td class="text-danger fw-bold lead"></td>
+	    </tr>
+	    <tr>
+	      <td class="civil-legal-value-cell lead fw-bold text-dark">Podatek od czynności cywilno-prawnych</td>
+	      <td class="text-danger fw-bold lead"></td>
+	    </tr>
+	  </tbody>
+	  <tfoot style="border-top: 3px solid black;">
+	    <tr>
+	      <td class="lead fw-bold">Razem</th>
+	      <td class="result-cell text-danger fw-bold lead"></th>
+	    </tr>
+	 </tfoot>
+	</table>
+	
+</div>
