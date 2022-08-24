@@ -111,11 +111,11 @@ namespace CMP.Areas.Identity.Pages.Account
             public string LastName { get; set; }
             [Required]
             [Display(Name = "Taxation Type")]
-            public TaxationType TaxationType { get; set; }
+            public int TaxationTypeId { get; set; }
             
             [Required]
             [Display(Name = "Type of Activity ")]
-            public TypeOfActivity TypeOfActivity { get; set; }
+            public int TypeOfActivityId { get; set; }
         }
 
 
@@ -123,6 +123,8 @@ namespace CMP.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+
             //IEnumerable<TypeOfActivity> types = 
             //ViewData["Type"] = new SelectList(types.ToList(), "TypeOfActivityId", "ActivityName");
         }
@@ -143,14 +145,14 @@ namespace CMP.Areas.Identity.Pages.Account
                 {
                     user.LastName = Input.LastName;
                 }
-                if (Input.TaxationType != user.TaxationType)
+                if (Input.TaxationTypeId != user.TaxationTypeId)
                 {
-                    user.TaxationType = Input.TaxationType;
+                    user.TaxationTypeId = Input.TaxationTypeId;
                 }
                 
-                if (Input.TypeOfActivity != user.TypeOfActivity)
+                if (Input.TypeOfActivityId != user.TypeOfActivityId)
                 {
-                    user.TypeOfActivity = Input.TypeOfActivity;
+                    user.TypeOfActivityId = Input.TypeOfActivityId;
                 }
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);

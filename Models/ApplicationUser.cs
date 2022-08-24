@@ -16,6 +16,8 @@ public class ApplicationUser : IdentityUser
     [PersonalData]
     public string? Fax { get; set; }
     [PersonalData]
+    public int ThemeId { get; set; }
+    [PersonalData]
     public int TaxationTypeId { get; set; } = 0;
     public TaxationType? TaxationType { get; set; }
     public int TypeOfActivityId { get; set; } = 0;

@@ -20,8 +20,17 @@ A simple company management panel for modern entrepreneurs in the browser. Acces
 ```
   git clone https://github.com/k3yboarders/business-assistant-plus
 ```
-2. Run dotnet
+2. Rename the file appsettings - example.json to appsettings.json and enter your database details.
+3. Add initial migration
+```
+dotnet ef migrations add InitialCreate
+```
+4. Update database
+```
+dotnet ef database update
+```
+5. Run dotnet
 ```
 dotnet watch
 ```
-3. You should see your browser opened with the assistant
+6. You should see your browser opened with the assistant
