@@ -1,12 +1,13 @@
 @{
-    ViewBag.Title = "Wykres walut";
+    ViewData["Title"] = "Wykres walut";
     Layout = "_Layout";
 }
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/1.0.0/chartjs-adapter-moment.min.js"></script>
+    <script src="@Url.Content("~/js/charts.js")"></script>
+}
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-<div>
-    <canvas class="chart" width="500" height="200">
-    </canvas>
-</div>
-<script src="js/charts.js"></script>
+<canvas class="chart" width="200" height="50"></canvas>

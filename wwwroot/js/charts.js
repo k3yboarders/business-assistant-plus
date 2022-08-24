@@ -1,7 +1,7 @@
 const baseCurrency = 'EUR';
 const toExchange = 'PLN';
 
-let url = `https://api.exchangerate.host/timeseries?start_date=2020-01-01&end_date=2021-04-04&symbols=${toExchange}&base=${baseCurrency}`;
+let url = `https://api.exchangerate.host/timeseries?start_date=2019-01-01&end_date=2021-01-01&symbols=${toExchange}&base=${baseCurrency}`;
 
 const ctx = document.getElementsByClassName('chart')[0].getContext('2d');
 const gradient = ctx.createLinearGradient(0,0,0,400);
@@ -11,25 +11,30 @@ const currencyChart = new Chart(ctx, {
 
   type: 'line',
   data: {
-    labels: [],
     datasets: [{
         label: `Koszt ${baseCurrency} w ${toExchange}`,
         data: [],
         fill: true,
-        clip: false,
         borderColor: 'rgba(155,155,0,.8)',
         pointBorderColor: 'rgba(0,0,0,0)',
         pointBackgroundColor: 'rgba(0,0,0,0)',
-        pointBorderWidth: .1,
-        tension: .1,
         backgroundColor: gradient
       }
     ]
   },
   options: {
+    parsing: false,
     plugins: {
       legend: {
-        display: false
+        labels: {
+          boxWidth: 0,
+        }
+      },
+      decimation: {
+        algorithm: 'lttb',
+        samples: 100,
+        threshold: 100,
+        enabled: true
       }
     },
     interaction: {
@@ -46,6 +51,11 @@ const currencyChart = new Chart(ctx, {
         }
       },
       x: {
+        type: 'time',
+        time: {
+            tooltipFormat: 'YYYY-MM-DD',
+            unit: 'day'
+        },
         display: false,
       }
     }
@@ -57,8 +67,7 @@ fetch(`${url}`)
 .then((out) => {
     const rates = Object.entries(out.rates);
     for(let i = 0; i <  rates.length; i++) {
-        currencyChart.data.labels.push(rates[i][0]);
-        currencyChart.data.datasets[0].data.push(rates[i][1].PLN);
+        currencyChart.data.datasets[0].data.push({x: Date.parse(rates[i][0]), y: rates[i][1].PLN});
     }
     currencyChart.update();
-})  
+});
