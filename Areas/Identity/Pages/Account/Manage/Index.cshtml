@@ -1,29 +1,174 @@
 ﻿@page
 @model IndexModel
+@using CMP.Models;
+@using Microsoft.AspNetCore.Identity
+@using CMP.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Profil";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
-
-<h3>@ViewData["Title"]</h3>
+@if (SignInManager.IsSignedIn(User))
+{
+	var applicationUser = await UserManager.GetUserAsync(User);
+	string[] names = new string[45];
+	string[] names2 = new string[5];
+	string[] themes = new string[2];
+	names[1] = "Lekarz";
+	names[2] = "Lekarz stomatologii";
+	names[3] = "Weterynarz";
+	names[4] = "Technik dentystyczny";
+	names[5] = "Felczer, położna, pielęgniarka";
+	names[6] = "Tłumacz";
+	names[7] = "Nauczyciel korepetytor";
+	names[8] = "Usługi parkingowe";
+	names[9] = "Usługi reklamowe/badania opinii publicznej";
+	names[10] = "Usługi hotelarskie";
+	names[11] = "Usługi fotograficzne";
+	names[12] = "Reprodukcja komputerowych nośników informacji";
+	names[13] = "Obsługa central radio-taxi";
+	names[14] = "Pośrednictwo w sprzedaży hurtowej";
+	names[15] = "Pośrednictwo w sprzedaży hurtowej samochodów osobowych oraz części i akcesoriów do nich";
+	names[16] = "Pośrednictwo w sprzedaży motocykli oraz części i akcesoriów do nich";
+	names[17] = "Usługi w zakresie opieki zdrowotnej";
+	names[18] = "Usługi architektoniczne i inżynierskie";
+	names[19] = "Usługi w zakresie specjalistycznego projektowania";
+	names[20] = "Wydawanie pakietów gier komputerowych , z wyłączeniem publikowania gier komputerowych w trybie on-line";
+	names[21] = "Wydawanie pakietów oprogramowania systemowego";
+	names[22] = "Wydawanie pakietów oprogramowania użytkowego";
+	names[23] = "Wydawanie oprogramowania komputerowego pobieranego z Internetu";
+	names[24] = "Usługi doradztwa w sprawie sprzętu komputerowego";
+	names[25] = "Usługi związane z oprogramowaniem";
+	names[26] = "Usługi związane z doradztwem w zakresie oprogramowania";
+	names[27] = "Usługi w zakresie instalowania oprogramowania";
+	names[28] = "Usługi związane z zarządzaniem siecią i systemami informatycznymi";
+	names[29] = "Wynajem nieruchomości";
+	names[30] = "Świadczenie usług związanych z zakwaterowaniem";
+	names[31] = "Badania naukowe";
+	names[32] = "Wynajem środków transportu";
+	names[33] = "Gastronomia (w zakresie sprzedaży napojów z zawartością alkoholu powyżej 1.5%)";
+	names[34] = "Zwalczanie pożarów i zapobieganie im";
+	names[35] = "Edukacja";
+	names[36] = "Biblioteka, archiwum, muzeum";
+	names[37] = "Prowadzenie działalności wytwórczej";
+	names[38] = "Budownictwo";
+	names[39] = "Sprzedaż biletów, żetonów, znaczków pocztowych";
+	names[40] = "Gastronomia (z wyjątkiem alkoholu)";
+	names[41] = "Handel";
+	names[42] = "Rybołóstwo";
+	names[43] = "Produkcja zwierzęca";
+	names[44] = "Wytwór produktów roślinnych i zwierzęcych w sposób inny niż przemysłowy";
+	names2[1] = "Skala podatkowa";
+	names2[2] = "Podatek liniowy";
+	names2[3] = "Ryczałt ewidencjonowany";
+	names2[4] = "Karta podatkowa";
+	themes[0] = "Jasny";
+	themes[1] = "Ciemny";
+		<h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
     <div class="col-md-6">
         <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
+	        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	        @*
+	        <div class="mb-3">
+		         <label asp-for="Username" class="form-label"></label>
+		        <input asp-for="Username" class="form-control" disabled/>
+	        </div> 
+*@
+	        <div class="mb-3">
+		        <label asp-for="Input.PhoneNumber" class="form-label"></label>
+		        <input asp-for="Input.PhoneNumber" class="form-control" value="@applicationUser.PhoneNumber"/>
+		        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+	        </div>
+                        <div class="mb-3">
+                            <label asp-for="Input.FirstName" class="form-label"></label>
+                            <input asp-for="Input.FirstName" class="form-control" aria-required="true" value="@applicationUser.FirstName" />
+                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        </div>         
+
+	        <div class="mb-3">
+                            <label asp-for="Input.LastName" class="form-label"></label>                
+                            <input asp-for="Input.LastName" class="form-control" aria-required="true" value="@applicationUser.LastName"/>
+                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+	        </div>    	        
+                        <div class="mb-3">
+                            <label asp-for="Input.BirthDate" class="form-label"></label>                
+                            <input asp-for="Input.BirthDate" class="form-control" aria-required="true" value="@applicationUser.BirthDate"/>
+                            <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
+                        </div>    
+                        <div class="mb-3">
+                            <label asp-for="Input.Fax" class="form-label"></label>                
+                            <input asp-for="Input.Fax" class="form-control" aria-required="true" value="@applicationUser.Fax"/>
+                            <span asp-validation-for="Input.Fax" class="text-danger"></span>
+                        </div>    
+	        	        	        
+	        	        	        
+	        <div class="mb-3">
+                            <label asp-for="Input.TypeOfActivityId"></label>
+	                        <select asp-for="Input.TypeOfActivityId" class="form-control" aria-required="true">
+		                        @for (int i = 1; i <= 44; i++)
+		                        {
+			                        if (i == applicationUser.TypeOfActivityId)
+			                        {
+				                        <option value="@i" selected>@names[@i]</option>
+			                        }
+			                        else
+			                        {
+				                        <option value="@i">@names[@i]</option>
+				                        
+			                        }
+		                        }
+		                        
+	                        </select>
+                            <span asp-validation-for="Input.TypeOfActivityId" class="text-danger"></span>
+                        </div>
+	        <div class="mb-3">
+		        <label asp-for="Input.TaxationTypeId" class="form-label"></label>                
+		        <select asp-for="Input.TaxationTypeId" class="form-control" aria-required="true">
+			        @for (int i = 1; i <= 4; i++)
+			        {
+				        if (i == applicationUser.TaxationTypeId)
+				        {
+					        <option value="@i" selected>@names2[@i]</option>
+				        }
+				        else
+				        {
+					        <option value="@i">@names2[@i]</option>
+                                				                        
+				        }
+			        }
+
+		        </select>
+		        <span asp-validation-for="Input.TaxationTypeId" class="text-danger"></span>
+	        </div>
+	        <div class="mb-3">
+		        <label asp-for="Input.ThemeId" class="form-label"></label>                
+		        <select asp-for="Input.ThemeId" class="form-control" aria-required="true">
+			        @for (int i = 0; i <= 1; i++)
+			        {
+				        if (i == applicationUser.ThemeId)
+				        {
+					        <option value="@i" selected>@themes[@i]</option>
+				        }
+				        else
+				        {
+					        <option value="@i">@themes[@i]</option>
+                                				                        
+				        }
+			        }
+
+		        </select>
+		        <span asp-validation-for="Input.ThemeId" class="text-danger"></span>
+	        </div>
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </form>
     </div>
 </div>
+	}
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

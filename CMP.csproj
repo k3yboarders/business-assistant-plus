@@ -31,4 +31,17 @@
       <Folder Include="Areas\Identity" />
       <Folder Include="Areas\Identity\Data" />
     </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\.gitignore" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\bower.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\index-svg.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\index.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\index.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\jquery.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\LICENSE" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\qrcode.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\qrcode.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\README.md" />
+    </ItemGroup>
 </Project>

@@ -37,7 +37,12 @@
                     </li>
                     @if (SignInManager.IsSignedIn(User))
                     {
-                                            
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Calculator">Kalkulator podatkowy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Chart">Śledzenie walut</a>
+                        </li>
                     }
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Kontakt</a>
@@ -62,7 +67,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2022 - CMP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2022 - <a href="https://github.com/k3yboarders" target="_blank">k3yboarders</a> - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>
 </footer>
 

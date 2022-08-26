@@ -29,6 +29,7 @@ namespace CMP.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
+        ///
         public string Username { get; set; }
 
         /// <summary>
@@ -56,8 +57,32 @@ namespace CMP.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Numer telefonu")]
             public string PhoneNumber { get; set; }
+            [PersonalData]
+            [Display(Name = "Imię")]
+            public string FirstName { get; set; }
+ 
+            [PersonalData]
+            [Display(Name = "Nazwisko")]
+            public string LastName { get; set; }
+            [PersonalData]
+            [Display(Name = "Sposób opodatkowania")]
+            public int TaxationTypeId { get; set; }
+            
+            [PersonalData]
+            [Display(Name = "Rodzaj dzialalności ")]
+            public int TypeOfActivityId { get; set; }
+            [PersonalData]
+            [Display(Name = "Data urodzenia")]
+            public DateTime? BirthDate { get; set; }
+            [PersonalData]
+            [Display(Name = "Faks")]
+            public string? Fax { get; set; }
+            [PersonalData]
+            [Display(Name = "Motyw")]
+            public int ThemeId { get; set; }
+
         }
 
         private async Task LoadAsync(ApplicationUser user)
