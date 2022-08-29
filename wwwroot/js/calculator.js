@@ -98,11 +98,10 @@ function enableMiddleClassReductionCheckbox() {
   $('.md-reduction-container').show();
 }
 
-function resetErrorState(inputField) {
-  inputField.each(function () {
-    $(this).removeClass('border-danger');
-    $('.confirmation-button').prop('disabled', false).removeClass('btn-danger');
-  });
+function clearTwoMillionOverflow() {
+  $('#pit-input').removeClass('is-invalid');
+  $('#pit-input + div').text('Proszę uzupełnić to pole');
+  $('.confirmation-button').prop('disabled', false).removeClass('btn-danger');
 }
 
 function hideCompanyType() {
@@ -123,9 +122,8 @@ function showHealthcareReduction() {
   $('.healthcare-container').show();
 }
 
-function enterErrorState(inputField) {
+function enterErrorState() {
   $('form').addClass('was-validated');
-  // inputField.addClass('was-validated');
   $('.confirmation-button').prop('disabled', true).addClass('btn-danger');
 }
 
@@ -204,12 +202,15 @@ function calculateVAT(income, percentage) {
   return income * percentage;
 }
 
-function validateInputFields(inputField) {
-  if(isNaN(parseFloat(inputField.val()))) {
-    enterErrorState(inputField);
-    return false;
-  }
-  return true;
+function validateInputFields(inputFields) {
+  let returnValue = true;
+  inputFields.each(function() {
+    if($(this).val() === '' && $(this).is(':visible')) {
+      returnValue = false;
+      enterErrorState();
+    }
+  })
+  return returnValue;
 }
 
 function isNonStandardType(taxationType) {
@@ -248,6 +249,11 @@ function removeInputWhitespace(inputElementsCollection) {
     $(this).val(pureNumber);
   });
 }
+function twoMillionEurosOverflow() {
+  $('#pit-input').addClass('is-invalid');
+  $('#pit-input + div').html('Podczas płacenia podatku w formie ryczałtu przychód nie może przekraczać 2 milionów &euro;');
+  $('.confirmation-button').prop('disabled', true).addClass('btn-danger');
+}
 
 $('#taxation-types').on('change', function () {
   switch ($(this).val()) {
@@ -283,17 +289,17 @@ $('#company-types').on('change', () => {
 });
 
 $('.container').on('input', 'input[type="text"]', function () {
+  removeInputWhitespace($(this));
   const income = parseFloat($(this).val());
   const twoMillionEuros = 9188200;
   const taxType = $('#taxation-types').val();
 
   if (
-    isNaN(income) ||
     (income > twoMillionEuros && taxType === typesOfPITTaxation.lumpSum)
   ) {
-    enterErrorState($('#pit-input'));
+    twoMillionEurosOverflow();
   } else {
-    resetErrorState($('input[type="text"]'));
+    clearTwoMillionOverflow($('input[type="text"]'));
   }
 
   if (
@@ -309,11 +315,11 @@ $('.container').on('input', 'input[type="text"]', function () {
 });
 
 $('.confirmation-button').on('click', () => {
-  removeInputWhitespace($('input[type="text"]'));
-  if (!validateInputFields($('input[type="text"]'))) {
+  if (!validateInputFields($('input[type="text"]:required'))) {
     return;
   }
 
+  removeInputWhitespace($('input[type="text"]'));
   const version = $('#polski-lad-modes').val() === 'polski-lad' ? 1 : 2;
   const value = parseFloat($('#pit-input').val());
   const typeOfTaxation = $('#taxation-types').val();
@@ -396,7 +402,14 @@ $('form').on('submit', event => {
 })
 
 jQuery(() => {
+  const selectedTaxType = Number($('#taxation-types').attr('data-selected'));
   $('input').val('');
   $('table').fadeOut();
   $('select').prop('selectedIndex', 0);
+  $('#taxation-types').prop('selectedIndex', selectedTaxType);
+  if(selectedTaxType === 2)
+    changeToLumpSumMode();
+  if(selectedTaxType === 3)
+    changeToTaxationCard();
+
 });

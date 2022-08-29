@@ -26,20 +26,16 @@ public class HomeController : Controller
         return View();
     }
     public IActionResult Calculator()
-    {/*
-        using (_context)
-        {
-            List<TypeOfActivity> types = new List<TypeOfActivity>();
+    {
+            List<TypeOfActivity> ActivityTypes = new List<TypeOfActivity>();
+            List<TaxationType> TaxationTypes = new List<TaxationType>();
             var query = from b in _context.TypeOfActivity
                 select b;
             foreach (var item in query)
             {
-                types.Add(item);
+                ActivityTypes.Add(item);
             }
-
-            ViewBag.ListOfTypes = types;
-        }*/
-
+            ViewBag.ListOfTypes = ActivityTypes;
             return View();
     }
     public IActionResult About()

@@ -11,69 +11,11 @@
 @if (SignInManager.IsSignedIn(User))
 {
 	var applicationUser = await UserManager.GetUserAsync(User);
-
-	string[] names = new string[45];
-	names[1] = "Lekarz";
-	names[2] = "Lekarz stomatologii";
-	names[3] = "Weterynarz";
-	names[4] = "Technik dentystyczny";
-	names[5] = "Felczer, położna, pielęgniarka";
-	names[6] = "Tłumacz";
-	names[7] = "Nauczyciel korepetytor";
-	names[8] = "Usługi parkingowe";
-	names[9] = "Usługi reklamowe/badania opinii publicznej";
-	names[10] = "Usługi hotelarskie";
-	names[11] = "Usługi fotograficzne";
-	names[12] = "Reprodukcja komputerowych nośników informacji";
-	names[13] = "Obsługa central radio-taxi";
-	names[14] = "Pośrednictwo w sprzedaży hurtowej";
-	names[15] = "Pośrednictwo w sprzedaży hurtowej samochodów osobowych oraz części i akcesoriów do nich";
-	names[16] = "Pośrednictwo w sprzedaży motocykli oraz części i akcesoriów do nich";
-	names[17] = "Usługi w zakresie opieki zdrowotnej";
-	names[18] = "Usługi architektoniczne i inżynierskie";
-	names[19] = "Usługi w zakresie specjalistycznego projektowania";
-	names[20] = "Wydawanie pakietów gier komputerowych , z wyłączeniem publikowania gier komputerowych w trybie on-line";
-	names[21] = "Wydawanie pakietów oprogramowania systemowego";
-	names[22] = "Wydawanie pakietów oprogramowania użytkowego";
-	names[23] = "Wydawanie oprogramowania komputerowego pobieranego z Internetu";
-	names[24] = "Usługi doradztwa w sprawie sprzętu komputerowego";
-	names[25] = "Usługi związane z oprogramowaniem";
-	names[26] = "Usługi związane z doradztwem w zakresie oprogramowania";
-	names[27] = "Usługi w zakresie instalowania oprogramowania";
-	names[28] = "Usługi związane z zarządzaniem siecią i systemami informatycznymi";
-	names[29] = "Wynajem nieruchomości";
-	names[30] = "Świadczenie usług związanych z zakwaterowaniem";
-	names[31] = "Badania naukowe";
-	names[32] = "Wynajem środków transportu";
-	names[33] = "Gastronomia (w zakresie sprzedaży napojów z zawartością alkoholu powyżej 1.5%)";
-	names[34] = "Zwalczanie pożarów i zapobieganie im";
-	names[35] = "Edukacja";
-	names[36] = "Biblioteka, archiwum, muzeum";
-	names[37] = "Prowadzenie działalności wytwórczej";
-	names[38] = "Budownictwo";
-	names[39] = "Sprzedaż biletów, żetonów, znaczków pocztowych";
-	names[40] = "Gastronomia (z wyjątkiem alkoholu)";
-	names[41] = "Handel";
-	names[42] = "Rybołóstwo";
-	names[43] = "Produkcja zwierzęca";
-	names[44] = "Wytwór produktów roślinnych i zwierzęcych w sposób inny niż przemysłowy";
-	int percentage = 0;
-	if (applicationUser.TypeOfActivityId >= 1 && applicationUser.TypeOfActivityId <= 7)
-	{
-		percentage = 17;
-	}
-	else if (applicationUser.TypeOfActivityId >= 8 && applicationUser.TypeOfActivityId <= 16)
-	{
-		percentage = 15;
-	}
-	else if (applicationUser.TypeOfActivityId >= 17 && applicationUser.TypeOfActivityId <= 19)
-	{
-		percentage = 14;
-	}
-	else if (applicationUser.TypeOfActivityId >= 20 && applicationUser.TypeOfActivityId <= 25)
-	{
-		percentage = 12;
-	}
+	float percentage = ViewBag.ListOfTypes[applicationUser.TypeOfActivityId - 1].Percentage;
+	string description = ViewBag.ListOfTypes[applicationUser.TypeOfActivityId - 1].ActivityName;
+	int SelectedTaxType = applicationUser.TaxationTypeId;
+ 
+	<link rel="stylesheet" href="~/css/calculator.css">
 	<div class="container align-middle">
 		<h1 class="text-dark">Kalkulator podatkowy</h1>
 		<form novalidate>
@@ -91,8 +33,8 @@
 
 
 			<label for="taxation-types" class="mt-2 lead text-dark fw-bold form-label">Sposób opodatkowania</label>
-			<select name="taxation-types" id="taxation-types" class="form-select">
-				<option value="standard" selected>Standardowa skala podatkowa</option>
+			<select name="taxation-types" id="taxation-types" class="form-select" data-selected="@SelectedTaxType">
+				<option value="standard">Standardowa skala podatkowa</option>
 				<option value="line">Podatek liniowy</option>
 				<option value="lumpSum">Ryczałt ewidencjonowany</option>
 				<option value="taxationCard">Karta Podatkowa</option>
@@ -110,9 +52,10 @@
 			</div>
 
 			<label for="company-types" class="mt-2 lead text-dark text-start fw-bold form-label" style="display: none;">Rodzaj działalności/świadczonych usług</label>
+			<select name="company-types" class="form-select" id="company-types" style="display: none;" disabled>
+			  <option value="@percentage">@description</option>
+			</select>
 
-			<input type="text" value="@names[applicationUser.TypeOfActivityId]" disabled>
-			<input type="hidden" value="@percentage" name="company-types" id="company-types">
 			<label for="vat-percentages" class="lead text-dark text-start fw-bold form-label">Stawka podatku VAT</label>
 			<select name="taxation-types" id="vat-percentages" class="form-select">
 				<option value="23">23%</option>
