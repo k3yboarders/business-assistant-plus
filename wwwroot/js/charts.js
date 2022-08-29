@@ -1,7 +1,8 @@
 let baseCurrency = 'EUR';
 let toExchange = 'PLN';
-const chartPeroids = ['W', 'M', '3M', '6M', 'Y', '5Y', 'Max'];
 const chartMaxSamples = 100;
+
+document.getElementById(`pills-${timePeroids[0]}-tab`).classList.add('active');
 
 const getExchangeRate = (peroidIndex) => {
     let now = luxon.DateTime.now();
@@ -30,11 +31,10 @@ const getExchangeRate = (peroidIndex) => {
         });
 }
 
-const ctx = document.getElementsByClassName('chart')[0].getContext('2d');
+const ctx = document.getElementById('currencyChart').getContext('2d');
 const gradient = ctx.createLinearGradient(0,0,0,400);
 gradient.addColorStop(0, 'rgba(255,255,0,.3)');
 gradient.addColorStop(1, 'rgba(255,255,0,0)');
-
 getExchangeRate(0);
 
 const currencyChart = new Chart(ctx, {
