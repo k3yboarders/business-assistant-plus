@@ -5,7 +5,7 @@
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
-<partial name="_StatusMessage" for="StatusMessage" />
+<partial name="_StatusMessage" for="StatusMessage"/>
 <h3>@ViewData["Title"]</h3>
 
 <div class="alert alert-warning" role="alert">
@@ -13,7 +13,7 @@
         <strong>This action only disables 2FA.</strong>
     </p>
     <p>
-Wyłączenie 2FA nie zmienia kluczy używanych w aplikacjach uwierzytelniających. Jeśli chcesz zmienić klucz
+        Wyłączenie 2FA nie zmienia kluczy używanych w aplikacjach uwierzytelniających. Jeśli chcesz zmienić klucz
         używane w aplikacji uwierzytelniającej, należy <a asp-page="./ResetAuthenticator">zresetować klucze uwierzytelniające.</a>
     </p>
 </div>

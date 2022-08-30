@@ -1,8 +1,9 @@
 @{
     ViewData["Title"] = "Wykres walut";
     Layout = "_Layout";
-    string[] peroids = {"1W", "1M", "3M", "6M", "1Y", "1Y", "MAX"};
+    string[] peroids = { "1W", "1M", "3M", "6M", "1Y", "1Y", "MAX" };
 }
+
 @section Scripts
 {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.0.1/luxon.min.js"></script>
@@ -15,11 +16,11 @@
 }
 
 <ul class="nav nav-pills justify-content-center" id="peroid-tablist" role="tablist">
-  @foreach (var peroid in peroids)
-  {
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="pills-@peroid-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">@peroid</button>
-    </li>
-  }
+    @foreach (var peroid in peroids)
+    {
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-@peroid-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">@peroid</button>
+        </li>
+    }
 </ul>
 <canvas id="currencyChart" width="200" height="50"></canvas>

@@ -4,8 +4,10 @@
 
 @{
 	ViewData["Title"] = "Kalkulator podatkowy";
+	Layout = "_Layout";
 }
-@section Scripts {
+@section Scripts
+{
 	<script src="~/js/calculator.js" defer></script>
 }
 @if (SignInManager.IsSignedIn(User))
@@ -34,6 +36,7 @@
 
 			<label for="taxation-types" class="mt-2 lead text-dark fw-bold form-label">Sposób opodatkowania</label>
 			<select name="taxation-types" id="taxation-types" class="form-select" data-selected="@SelectedTaxType">
+				<option>-</option>
 				<option value="standard">Standardowa skala podatkowa</option>
 				<option value="line">Podatek liniowy</option>
 				<option value="lumpSum">Ryczałt ewidencjonowany</option>
