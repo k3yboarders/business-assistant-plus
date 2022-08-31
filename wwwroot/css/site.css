@@ -16,7 +16,15 @@ html {
 body {
     margin-bottom: 60px;
 }
-
+body.theme-0 {
+    transition: background 2s;
+    background-color: #ffffff;
+}
+body.theme-1 {
+    transition: background 2s;
+    background-color: #212529;
+    color: white !important;
+}
 .lgimg {
     transition: all 0.4s ease-in;
 }

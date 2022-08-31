@@ -89,12 +89,27 @@ namespace CMP.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+            var fax = user.Fax;
+            var birthDate = user.BirthDate;
+            var themeId = user.ThemeId;
+            var typeOfActivityId = user.TypeOfActivityId;
+            var taxationTypeId = user.TaxationTypeId;
+            
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FirstName = firstName,
+                LastName = lastName,
+                Fax = fax,
+                BirthDate = birthDate,
+                ThemeId = themeId,
+                TypeOfActivityId = typeOfActivityId,
+                TaxationTypeId = taxationTypeId
+                
             };
         }
 
@@ -103,7 +118,7 @@ namespace CMP.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie można załadować użytkownika o ID '{_userManager.GetUserId(User)}'.");
             }
 
             await LoadAsync(user);
@@ -115,7 +130,7 @@ namespace CMP.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie można załadować użytkownika o ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -129,12 +144,48 @@ namespace CMP.Areas.Identity.Pages.Account.Manage
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    StatusMessage = "Błąd!.";
                     return RedirectToPage();
                 }
             }
+
+            if (Input.FirstName != user.FirstName)
+            {
+                user.FirstName = Input.FirstName;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.LastName != user.LastName)
+            {
+                user.LastName = Input.LastName;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.Fax != user.Fax)
+            {
+                user.Fax = Input.Fax;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.BirthDate != user.BirthDate)
+            {
+                user.BirthDate = Input.BirthDate;
+                await _userManager.UpdateAsync(user);
+            }
+            if (Input.ThemeId != user.ThemeId)
+            {
+                user.ThemeId = Input.ThemeId;
+                await _userManager.UpdateAsync(user);
+            }            
+            if (Input.TypeOfActivityId != user.TypeOfActivityId)
+            {
+                user.TypeOfActivityId = Input.TypeOfActivityId;
+                await _userManager.UpdateAsync(user);
+            }           
+            if (Input.TaxationTypeId != user.TaxationTypeId)
+            {
+                user.TaxationTypeId = Input.TaxationTypeId;
+                await _userManager.UpdateAsync(user);
+            }
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Twój profil został zaktualizowany";
             return RedirectToPage();
         }
     }
