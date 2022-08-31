@@ -30,13 +30,12 @@
 			<label for="polski-lad-modes" class="mt-2 lead text-dard fw-bold form-label">Sposób rozliczania</label>
 			<select name="taxation-modes" id="polski-lad-modes" class="form-select">
 				<option value="polski-lad">"Polski Ład"</option>
-				<option value="polski-lad-2">"Polski Ład 2.0"</option>
+				<option value="polski-lad-2" selected>"Polski Ład 2.0"</option>
 			</select>
 
 
 			<label for="taxation-types" class="mt-2 lead text-dark fw-bold form-label">Sposób opodatkowania</label>
 			<select name="taxation-types" id="taxation-types" class="form-select" data-selected="@SelectedTaxType">
-				<option>-</option>
 				<option value="standard">Standardowa skala podatkowa</option>
 				<option value="line">Podatek liniowy</option>
 				<option value="lumpSum">Ryczałt ewidencjonowany</option>
@@ -115,6 +114,10 @@
 			</tfoot>
 		</table>
 
+	</div>
+	<div class="container-fluid">
+	  <p class="text-danger mt-2">Uwaga! Niniejszy kalkulator prezentuje tylko i wyłącznie wyniki orientacyjne. W celu rzetelnego obliczenia należności podatkowych należy skontaktować się
+	  z profesjonalnym radcą podatkowym!</p>
 	</div>
 
 }

@@ -403,14 +403,23 @@ $('form').on('submit', event => {
 })
 
 jQuery(() => {
-    const selectedTaxType = Number($('#taxation-types').attr('data-selected'));
+    const selectedTaxType = Number($('#taxation-types').attr('data-selected')) - 1;
     $('input').val('');
     $('table').fadeOut();
     $('select').prop('selectedIndex', 0);
+    $('#polski-lad-modes').prop('selectedIndex', 1)
     $('#taxation-types').prop('selectedIndex', selectedTaxType);
-    if (selectedTaxType === 2)
-        changeToLumpSumMode();
-    if (selectedTaxType === 3)
-        changeToTaxationCard();
-
+    switch(selectedTaxType) {
+    case 1:
+      changeToNormalMode();
+      break;
+    case 2:
+      changeToLumpSumMode();
+      break;
+    case 3:
+      changeToTaxationCard();
+      break;
+    default:
+      changeToNormalMode();
+    }
 });
