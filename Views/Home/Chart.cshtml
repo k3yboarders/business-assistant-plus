@@ -1,7 +1,8 @@
 @{
     ViewData["Title"] = "Wykres walut";
     Layout = "_Layout";
-    string[] peroids = { "1W", "1M", "3M", "6M", "1Y", "5Y", "MAX" };
+    string[] currencies = { "PLN", "EUR" };
+    string[] peroids = { "1W", "1M", "3M", "6M", "1Y"/*, "5Y", "MAX" */};
 }
 
 @section Scripts
@@ -11,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-luxon/1.2.0/chartjs-adapter-luxon.min.js"></script>
     <script>
         const timePeroids = @Html.Raw(Json.Serialize(peroids));
+        const currencies = @Html.Raw(Json.Serialize(currencies));
     </script>
     <script src="@Url.Content("~/js/charts.js")"></script>
 }
