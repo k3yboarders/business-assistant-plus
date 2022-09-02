@@ -1,6 +1,23 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.CodeAnalysis.Classification
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@{
+    string theme = "";
+    if (SignInManager.IsSignedIn(User))
+    {
+        var applicationUser = await UserManager.GetUserAsync(User);
+         theme = "theme-" + applicationUser.ThemeId;
+            
+    }
+    else
+    {
+         theme = "";
+    }
+}
+
+
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -13,9 +30,11 @@
     <link rel="icon" href="~/img/project_logo.png"/>
 
 </head>
-<body class="theme-@(await UserManager.GetUserAsync(User)).ThemeId;">
+
+<body class="@theme"> 
+                        
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow mb-3 menu" style="background-color: black !important; ">
         <div class="container">
             <div class="lgimg">
                 <img src="~/img/project_logo.png" width="32px" height="32px"/>
@@ -65,7 +84,7 @@
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
+<footer class="footer text-muted @theme">
     <div class="container">
         &copy; 2022 - <a href="https://github.com/k3yboarders" target="_blank">k3yboarders</a> - <a asp-area="" asp-controller="Home" asp-action="Privacy">Polityka prywatności</a>
     </div>

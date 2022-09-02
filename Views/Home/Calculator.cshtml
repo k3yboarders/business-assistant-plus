@@ -22,19 +22,19 @@
 		<h1 class="text-dark">Kalkulator podatkowy</h1>
 		<form novalidate>
 			<div>
-				<label for="pit-input" class="lead text-black form-label fw-bold">Dochód w roku podatkowym</label>
+				<label for="pit-input" class="lead form-label fw-bold">Dochód w roku podatkowym</label>
 				<input type="text" id="pit-input" class="form-control" required>
 				<div class="invalid-feedback fw-bold lead fs-6">Proszę uzupełnić to pole</div>
 			</div>
 
-			<label for="polski-lad-modes" class="mt-2 lead text-dard fw-bold form-label">Sposób rozliczania</label>
+			<label for="polski-lad-modes" class="mt-2 lead fw-bold form-label">Sposób rozliczania</label>
 			<select name="taxation-modes" id="polski-lad-modes" class="form-select">
 				<option value="polski-lad">"Polski Ład"</option>
 				<option value="polski-lad-2" selected>"Polski Ład 2.0"</option>
 			</select>
 
 
-			<label for="taxation-types" class="mt-2 lead text-dark fw-bold form-label">Sposób opodatkowania</label>
+			<label for="taxation-types" class="mt-2 lead fw-bold form-label">Sposób opodatkowania</label>
 			<select name="taxation-types" id="taxation-types" class="form-select" data-selected="@SelectedTaxType">
 				<option value="standard">Standardowa skala podatkowa</option>
 				<option value="line">Podatek liniowy</option>
@@ -45,20 +45,20 @@
 
 			<div class="form-check healthcare-container mt-2" style="display: none;">
 				<input type="checkbox" id="healthcare-reduction-input" class="form-check-input">
-				<label for="healthcare-reduction-input" class="text-dark fw-bold form-check-label">Odliczenie składki zdrowotnej od przychodu/dochodu</label>
+				<label for="healthcare-reduction-input" class="fw-bold form-check-label">Odliczenie składki zdrowotnej od przychodu/dochodu</label>
 			</div>
 
 			<div class="form-check mt-2 md-reduction-container">
 				<input type="checkbox" id="middle-class-reduction-checkbox" class="form-check-input">
-				<label for="middle-class-reduction-checkbox" class="text-dark fw-bold form-check-label">Ulga dla klasy średniej</label>
+				<label for="middle-class-reduction-checkbox" class="fw-bold form-check-label">Ulga dla klasy średniej</label>
 			</div>
 
-			<label for="company-types" class="mt-2 lead text-dark text-start fw-bold form-label" style="display: none;">Rodzaj działalności/świadczonych usług</label>
+			<label for="company-types" class="mt-2 lead text-start fw-bold form-label" style="display: none;">Rodzaj działalności/świadczonych usług</label>
 			<select name="company-types" class="form-select" id="company-types" style="display: none;" disabled>
 			  <option value="@percentage">@description</option>
 			</select>
 
-			<label for="vat-percentages" class="lead text-dark text-start fw-bold form-label">Stawka podatku VAT</label>
+			<label for="vat-percentages" class="lead text-start fw-bold form-label">Stawka podatku VAT</label>
 			<select name="taxation-types" id="vat-percentages" class="form-select">
 				<option value="23">23%</option>
 				<option value="8">8%</option>
@@ -66,17 +66,17 @@
 				<option value="0">0%</option>
 			</select>
 
-			<label for="sales-income" class="lead text-dark text-start fw-bold form-label">Przychód Netto ze sprzedaży</label>
+			<label for="sales-income" class="lead text-start fw-bold form-label">Przychód Netto ze sprzedaży</label>
 			<input type="text" id="sales-income" class="form-control">
 
-			<label for="property-tax-cost" class="lead text-dark text-start fw-bold form-label">Koszt podatku od nieruchomości</label>
+			<label for="property-tax-cost" class="lead text-start fw-bold form-label">Koszt podatku od nieruchomości</label>
 			<input type="text" id="property-tax-cost" class="form-control">
 
-			<label for="civil-legal-tax-cost" class="lead text-dark text-start fw-bold form-label">Wysokość podatku od czynności cywilno-prawnych</label>
+			<label for="civil-legal-tax-cost" class="lead text-start fw-bold form-label">Wysokość podatku od czynności cywilno-prawnych</label>
 			<input type="text" id="civil-legal-tax-cost" class="form-control">
 
 			<div class="tax-card-percent" style="display: none;">
-				<label for="percentage-input" class="mt-2 lead text-dark text-start fw-bold form-label">Oprocentowanie ustalone przez <abbr title="Urząd Skarbowy">US</abbr></label>
+				<label for="percentage-input" class="mt-2 text-start fw-bold form-label">Oprocentowanie ustalone przez <abbr title="Urząd Skarbowy">US</abbr></label>
 				<input type="text" id="percentage-input" class="form-control" required>
 				<div class="invalid-feedback fw-bold lead fs-6">Proszę uzupełnić to pole</div>
 			</div>
@@ -86,23 +86,23 @@
 		<table class="table table-hover" style="display: none;">
 			<tbody>
 			<tr>
-				<td class="pit-value-cell lead fw-bold text-dark"><abbr title="Personal Income Tax">PIT</abbr></td>
+				<td class="pit-value-cell lead fw-bold"><abbr title="Personal Income Tax">PIT</abbr></td>
 				<td class="text-danger fw-bold lead"></td>
 			</tr>
 			<tr>
-				<td class="healthcare-value-cell lead fw-bold text-dark">Składka zdrowotna roczna</td>
+				<td class="healthcare-value-cell lead fw-bold">Składka zdrowotna roczna</td>
 				<td class="text-danger fw-bold lead"></td>
 			</tr>
 			<tr>
-				<td class="vat-value-cell lead fw-bold text-dark"><abbr title="Value-added Tax">VAT</abbr></td>
+				<td class="vat-value-cell lead fw-bold"><abbr title="Value-added Tax">VAT</abbr></td>
 				<td class="text-danger fw-bold lead"></td>
 			</tr>
 			<tr>
-				<td class="property-value-cell lead fw-bold text-dark">Podatek od nieruchomości</td>
+				<td class="property-value-cell lead fw-bold">Podatek od nieruchomości</td>
 				<td class="text-danger fw-bold lead"></td>
 			</tr>
 			<tr>
-				<td class="civil-legal-value-cell lead fw-bold text-dark">Podatek od czynności cywilno-prawnych</td>
+				<td class="civil-legal-value-cell lead fw-bold">Podatek od czynności cywilno-prawnych</td>
 				<td class="text-danger fw-bold lead"></td>
 			</tr>
 			</tbody>

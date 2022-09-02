@@ -45,3 +45,26 @@ body.theme-1 {
     cursor: pointer; /* Add a mouse pointer on hover */
     padding: 15px; /* Some padding */
 }    
+footer.theme-0
+{
+    
+}
+footer.theme-1
+{
+    background-color: black !important;
+    color: #ffbf80 !important;
+    
+}
+footer.theme-1 a:link, footer.theme-1 a:visited
+{
+    color: #66d9ff !important;
+}
+.menu
+{
+    bacground-color: black !important;
+    color: white !important;
+}
+body.theme-1 a:link a:visited
+{
+    color: #66d9ff !important;
+}
