@@ -21,6 +21,19 @@ class CurrencyChart extends Chart {
             options: {
                 parsing: false,
                 plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: context => {
+                                const d = new Date(context[0].parsed.x);
+                                const formattedDate = d.toLocaleString([], {
+                                    day: 'numeric',
+                                    month: 'numeric',
+                                    year: 'numeric'
+                                })
+                                return formattedDate
+                            }
+                        }
+                    },
                     legend: {
                         display: false
                     }
@@ -41,7 +54,7 @@ class CurrencyChart extends Chart {
                     x: {
                         type: 'time',
                         time: {
-                            tooltipFormat: 'YYYY-MM-DD',
+                            tooltipFormat: 'yyyy-mm-dd',
                             unit: 'day'
                         },
                         display: false,
