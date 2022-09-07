@@ -1,7 +1,6 @@
 let indexController = 3;
 const exchageRates = new Array(timePeroids.length);
 const exchageRatesController = new Array(timePeroids.length);
-const chartMaxSamples = 50;
 
 class CurrencyChart extends Chart {
     constructor(ctx) {
@@ -64,12 +63,12 @@ class CurrencyChart extends Chart {
         });
 
         this.getPillElement(timePeroids[indexController]).classList.add('active');
-        this.getExchangeRate(true);
+        this.getExchangeRate(currencies[1], currencies[0]);
 
         for (let i = 0; i < timePeroids.length; i++){
           this.getPillElement(timePeroids[i]).addEventListener('click', () => {
             indexController = i;
-            this.getExchangeRate(true);
+            this.setupChart();
           })
         }
     }
@@ -84,53 +83,40 @@ class CurrencyChart extends Chart {
 
     setupChart() {
       this.data.datasets[0]._data = [];
-      this.data.datasets[0].data = exchageRates[indexController];
+      let subtrahend = 0;
+      switch (indexController) {
+        case 0:
+            subtrahend = 7;
+            break;
+        case 1:
+            subtrahend = 31;
+            break;
+        case 2:
+            subtrahend = 93;
+            break;
+        case 3:
+            subtrahend = 183;
+            break;
+        default:
+            subtrahend = 366;
+            break;
+      }
+      this.data.datasets[0].data = exchageRates[this.currentExchange].slice(exchageRates[this.currentExchange].length - subtrahend);
       this.update();
     }
 
-    getExchangeRate(updateChart) {
-
-      let now = luxon.DateTime.now();
-
-      switch (indexController) {
-          case 0:
-              now = now.minus({weeks: 1});
-              break;
-          case 1:
-              now = now.minus({months: 1});
-              break;
-          case 2:
-              now = now.minus({months: 3});
-              break;
-          case 3:
-              now = now.minus({months: 6});
-              break;
-          default:
-              now = now.minus({years: 1});
-              break;
-          //case 5:
-              //now = now.minus({years: 5});
-              //break;
-          //default:
-              //now = luxon.DateTime.fromISO('2000-01-01');
-      }
-
-      let url = `https://api.exchangerate.host/timeseries?start_date=${now.toISODate()}&end_date=${luxon.DateTime.now().toISODate()}&symbols=${currencies[0]}&base=${currencies[1]}`;
-      console.log(url)
-
+    getExchangeRate(baseCurrency, exchangeCurrency) {
+      this.currentExchange = `${baseCurrency}-${exchangeCurrency}`;
+      let url = `https://api.exchangerate.host/timeseries?start_date=${luxon.DateTime.now().minus({years: 1})}&end_date=${luxon.DateTime.now().toISODate()}&symbols=${exchangeCurrency}&base=${baseCurrency}`;
       fetch(`${url}`)
           .then(res => res.json())
           .then((out) => {
               const rates = Object.entries(out.rates);
-              if(exchageRatesController[indexController] !== true) {
-                exchageRates[indexController] = new Array();
-                for (let i = 0; i < rates.length; i++) {
-                    exchageRates[indexController].push({x: Date.parse(rates[i][0]), y: rates[i][1].PLN});
-                }
-                exchageRatesController[indexController] = true;
+              exchageRates[this.currentExchange] = new Array();
+              for (let i = 0; i < rates.length; i++) {
+                exchageRates[this.currentExchange].push({x: Date.parse(rates[i][0]), y: rates[i][1].PLN});
               }
-              if(updateChart)
-                this.setupChart();
+              this.setupChart();
           });
     }
 }
