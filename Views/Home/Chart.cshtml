@@ -1,7 +1,7 @@
 @{
     ViewData["Title"] = "Wykres walut";
     Layout = "_Layout";
-    string[] currencies = { "PLN", "EUR" };
+    string[] currencies = { "PLN", "EUR", "USD", "BTC" };
     string[] peroids = { "1W", "1M", "3M", "6M", "1Y" };
 }
 
@@ -19,25 +19,18 @@
 }
 
  <div class="row align-items-start m-4">
-    <div class="col">
-      <select id="base-currency" class="form-select" aria-label="Default select example">
-        @foreach (var currency in currencies)
-        {
-          <option value="@currency">@currency</option>
-        }
-      </select>
-    </div>
-    <div class="col">
-      <select id="exchange-currency" class="form-select" aria-label="Default select example">
-        @foreach (var currency in currencies)
-        {
-          <option value="@currency">@currency</option>
-        }
-      </select>
-    </div>
+    @for(var i = 0; i < 2; i++)
+    {
+      <div class="col">
+        <select class="form-select currency-select" aria-label="Default select example">
+          @foreach (var currency in currencies)
+          {
+            <option value="@currency">@currency</option>
+          }
+        </select>
+      </div>
+    }
   </div>
-
-
 
 <ul class="nav nav-pills justify-content-center" id="peroid-tablist" role="tablist">
     @foreach (var peroid in peroids)

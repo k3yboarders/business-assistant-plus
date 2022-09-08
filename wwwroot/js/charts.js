@@ -62,11 +62,11 @@ class CurrencyChart extends Chart {
             }
         });
 
-        const bcSelect = document.getElementById('base-currency');
+        const bcSelect = document.getElementsByClassName('currency-select')[0];
         this.updateBaseCurrency(bcSelect)
         bcSelect.addEventListener('change', this.updateBaseCurrency.bind(this, bcSelect));
 
-        const ecSelect = document.getElementById('exchange-currency');
+        const ecSelect = document.getElementsByClassName('currency-select')[1];
         this.updateExchangeCurrency(ecSelect)
         ecSelect.addEventListener('change', this.updateExchangeCurrency.bind(this, ecSelect));
 
@@ -125,18 +125,20 @@ class CurrencyChart extends Chart {
 
     getExchangeRate() {
       this.currentExchange = `${this.baseCurrency}-${this.exchangeCurrency}`;
-      let url = `https://api.exchangerate.host/timeseries?start_date=${luxon.DateTime.now().minus({years: 1})}&end_date=${luxon.DateTime.now().toISODate()}&symbols=${this.exchangeCurrency}&base=${this.baseCurrency}`;
-      fetch(`${url}`)
-          .then(res => res.json())
-          .then((out) => {
-              const rates = Object.entries(out.rates);
-              exchageRates[this.currentExchange] = new Array();
-              for (let i = 0; i < rates.length; i++) {
-                exchageRates[this.currentExchange].push({x: Date.parse(rates[i][0]), y: rates[i][1][`${this.exchangeCurrency}`]});
-              }
-              this.setupChart();
-          });
-    }
+      if(exchageRates[this.currentExchange] == undefined) {
+        let url = `https://api.exchangerate.host/timeseries?start_date=${luxon.DateTime.now().minus({years: 1})}&end_date=${luxon.DateTime.now().toISODate()}&symbols=${this.exchangeCurrency}&base=${this.baseCurrency}`;
+        fetch(`${url}`)
+            .then(res => res.json())
+            .then((out) => {
+                const rates = Object.entries(out.rates);
+                exchageRates[this.currentExchange] = new Array();
+                for (let i = 0; i < rates.length; i++) {
+                    exchageRates[this.currentExchange].push({x: Date.parse(rates[i][0]), y: rates[i][1][`${this.exchangeCurrency}`]});
+                }
+                this.setupChart();
+            });
+        }
+      }
 }
 
 const ctx = document.getElementById('currencyChart').getContext('2d');
