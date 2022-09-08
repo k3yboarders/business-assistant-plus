@@ -62,8 +62,16 @@ class CurrencyChart extends Chart {
             }
         });
 
+        const bcSelect = document.getElementById('base-currency');
+        this.updateBaseCurrency(bcSelect)
+        bcSelect.addEventListener('change', this.updateBaseCurrency.bind(this, bcSelect));
+
+        const ecSelect = document.getElementById('exchange-currency');
+        this.updateExchangeCurrency(ecSelect)
+        ecSelect.addEventListener('change', this.updateExchangeCurrency.bind(this, ecSelect));
+
         this.getPillElement(timePeroids[indexController]).classList.add('active');
-        this.getExchangeRate(currencies[1], currencies[0]);
+        this.getExchangeRate();
 
         for (let i = 0; i < timePeroids.length; i++){
           this.getPillElement(timePeroids[i]).addEventListener('click', () => {
@@ -71,6 +79,16 @@ class CurrencyChart extends Chart {
             this.setupChart();
           })
         }
+    }
+
+    updateBaseCurrency(element) {
+        this.baseCurrency = element.value;
+        this.getExchangeRate();
+    }
+
+    updateExchangeCurrency(element) {
+        this.exchangeCurrency = element.value;
+        this.getExchangeRate();
     }
 
     getPill(name) {
@@ -105,16 +123,16 @@ class CurrencyChart extends Chart {
       this.update();
     }
 
-    getExchangeRate(baseCurrency, exchangeCurrency) {
-      this.currentExchange = `${baseCurrency}-${exchangeCurrency}`;
-      let url = `https://api.exchangerate.host/timeseries?start_date=${luxon.DateTime.now().minus({years: 1})}&end_date=${luxon.DateTime.now().toISODate()}&symbols=${exchangeCurrency}&base=${baseCurrency}`;
+    getExchangeRate() {
+      this.currentExchange = `${this.baseCurrency}-${this.exchangeCurrency}`;
+      let url = `https://api.exchangerate.host/timeseries?start_date=${luxon.DateTime.now().minus({years: 1})}&end_date=${luxon.DateTime.now().toISODate()}&symbols=${this.exchangeCurrency}&base=${this.baseCurrency}`;
       fetch(`${url}`)
           .then(res => res.json())
           .then((out) => {
               const rates = Object.entries(out.rates);
               exchageRates[this.currentExchange] = new Array();
               for (let i = 0; i < rates.length; i++) {
-                exchageRates[this.currentExchange].push({x: Date.parse(rates[i][0]), y: rates[i][1].PLN});
+                exchageRates[this.currentExchange].push({x: Date.parse(rates[i][0]), y: rates[i][1][`${this.exchangeCurrency}`]});
               }
               this.setupChart();
           });
