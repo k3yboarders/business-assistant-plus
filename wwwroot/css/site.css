@@ -12,7 +12,7 @@ html {
     position: relative;
     min-height: 100%;
 }
-
+/*
 body {
     margin-bottom: 60px;
 }
@@ -25,6 +25,8 @@ body.theme-1 {
     background-color: #212529;
     color: white !important;
 }
+*/
+ 
 .lgimg {
     transition: all 0.4s ease-in;
 }
@@ -45,6 +47,7 @@ body.theme-1 {
     cursor: pointer; /* Add a mouse pointer on hover */
     padding: 15px; /* Some padding */
 }    
+/*
 footer.theme-0
 {
     
@@ -68,3 +71,5 @@ body.theme-1 a:link a:visited
 {
     color: #66d9ff !important;
 }
+*/
+ 

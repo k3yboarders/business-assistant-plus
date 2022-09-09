@@ -1,136 +1,107 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Register"; 
 }
 
 <h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Utwórz nowe konto.</h2>
-            <hr/>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="mb-3">
-                <label asp-for="Input.Email" class="form-label"></label>
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true"/>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Input.FirstName" class="form-label"></label>
-                <input asp-for="Input.FirstName" class="form-control" aria-required="true"/>
-                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Input.LastName" class="form-label"></label>
-                <input asp-for="Input.LastName" class="form-control" aria-required="true"/>
-                <span asp-validation-for="Input.LastName" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Input.TypeOfActivityId"></label>
-                <select asp-for="Input.TypeOfActivityId" class="form-control" aria-required="true">
-                    <option value="1" selected>Lekarz</option>
-                    <option value="2">Lekarz stomatologii</option>
-                    <option value="3">Weterynarz</option>
-                    <option value="4">Technik dentystyczny</option>
-                    <option value="5">Felczer, położna, pielęgniarka</option>
-                    <option value="6">Tłumacz</option>
-                    <option value="7">Nauczyciel korepetytor</option>
-                    <option value="8">Usługi parkingowe</option>
-                    <option value="9">Usługi reklamowe/badania opinii publicznej</option>
-                    <option value="10">Usługi hotelarskie</option>
-                    <option value="11">Usługi fotograficzne</option>
-                    <option value="12">Reprodukcja komputerowych nośników informacji</option>
-                    <option value="13">Obsługa central radio-taxi</option>
-                    <option value="14">Pośrednictwo w sprzedaży hurtowej</option>
-                    <option value="15">Pośrednictwo w sprzedaży hurtowej samochodów osobowych oraz części i akcesoriów do nich</option>
-                    <option value="16">Pośrednictwo w sprzedaży motocykli oraz części i akcesoriów do nich</option>
-                    <option value="17">Usługi w zakresie opieki zdrowotnej</option>
-                    <option value="18">Usługi architektoniczne i inżynierskie</option>
-                    <option value="19">Usługi w zakresie specjalistycznego projektowania</option>
-                    <option value="20">Wydawanie pakietów gier komputerowych , z wyłączeniem publikowania gier komputerowych w trybie on-line</option>
-                    <option value="21">Wydawanie pakietów oprogramowania systemowego</option>
-                    <option value="22">Wydawanie pakietów oprogramowania użytkowego</option>
-                    <option value="23">Wydawanie oprogramowania komputerowego pobieranego z Internetu</option>
-                    <option value="24">Usługi doradztwa w sprawie sprzętu komputerowego</option>
-                    <option value="25">Usługi związane z oprogramowaniem</option>
-                    <option value="26">Usługi związane z doradztwem w zakresie oprogramowania</option>
-                    <option value="27">Usługi w zakresie instalowania oprogramowania</option>
-                    <option value="28">Usługi związane z zarządzaniem siecią i systemami informatycznymi</option>
-                    <option value="29">Wynajem nieruchomości</option>
-                    <option value="30">Świadczenie usług związanych z zakwaterowaniem</option>
-                    <option value="31">Badania naukowe</option>
-                    <option value="32">Wynajem środków transportu</option>
-                    <option value="33">Gastronomia (w zakresie sprzedaży napojów z zawartością alkoholu powyżej 1.5%)</option>
-                    <option value="34">Zwalczanie pożarów i zapobieganie im</option>
-                    <option value="35">Edukacja</option>
-                    <option value="36">Biblioteka, archiwum, muzeum</option>
-                    <option value="37">Prowadzenie działalności wytwórczej</option>
-                    <option value="38">Budownictwo</option>
-                    <option value="39">Sprzedaż biletów, żetonów, znaczków pocztowych</option>
-                    <option value="40">Gastronomia (z wyjątkiem alkoholu)</option>
-                    <option value="41">Handel</option>
-                    <option value="42">Rybołóstwo</option>
-                    <option value="43">Produkcja zwierzęca</option>
-                    <option value="44">Wytwór produktów roślinnych i zwierzęcych w sposób inny niż przemysłowy</option>
-                </select>
-                <span asp-validation-for="Input.TypeOfActivityId" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Input.TaxationTypeId" class="form-label"></label>
-                <select asp-for="Input.TaxationTypeId" class="form-control" aria-required="true">
-                    <option value="1" selected>Skala podatkowa</option>
-                    <option value="2">Podatek liniowy</option>
-                    <option value="3">Ryczałt ewidencjonowany</option>
-                    <option value="4">Karta podatkowa</option>
-                </select>
-                <span asp-validation-for="Input.TaxationTypeId" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Input.Password" class="form-label"></label>
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true"/>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Input.ConfirmPassword" class="form-label"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true"/>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Zarejestruj się</button>
-        </form>
-    </div>@*
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            {
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
+<section class="projects-section bg-light">
+    <center>
+        <div class="container px-4 px-lg-5">
+                <div class="col-md-4">
+                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <h2>Utwórz nowe konto</h2>
+                        <hr/>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="Email"/>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
                         </div>
+                        <div class="mb-3">
+                            <input asp-for="Input.FirstName" class="form-control" aria-required="true" placeholder="Imię"/>
+                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <input asp-for="Input.LastName" class="form-control" aria-required="true" placeholder="Nazwisko"/>
+                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <select asp-for="Input.TypeOfActivityId" class="form-control" aria-required="true">
+                                <option value="0" selected>Rodzaj działalności</option>
+                                <option value="1" >Lekarz</option>
+                                <option value="2">Lekarz stomatologii</option>
+                                <option value="3">Weterynarz</option>
+                                <option value="4">Technik dentystyczny</option>
+                                <option value="5">Felczer, położna, pielęgniarka</option>
+                                <option value="6">Tłumacz</option>
+                                <option value="7">Nauczyciel korepetytor</option>
+                                <option value="8">Usługi parkingowe</option>
+                                <option value="9">Usługi reklamowe/badania opinii publicznej</option>
+                                <option value="10">Usługi hotelarskie</option>
+                                <option value="11">Usługi fotograficzne</option>
+                                <option value="12">Reprodukcja komputerowych nośników informacji</option>
+                                <option value="13">Obsługa central radio-taxi</option>
+                                <option value="14">Pośrednictwo w sprzedaży hurtowej</option>
+                                <option value="15">Pośrednictwo w sprzedaży hurtowej samochodów osobowych oraz części i akcesoriów do nich</option>
+                                <option value="16">Pośrednictwo w sprzedaży motocykli oraz części i akcesoriów do nich</option>
+                                <option value="17">Usługi w zakresie opieki zdrowotnej</option>
+                                <option value="18">Usługi architektoniczne i inżynierskie</option>
+                                <option value="19">Usługi w zakresie specjalistycznego projektowania</option>
+                                <option value="20">Wydawanie pakietów gier komputerowych , z wyłączeniem publikowania gier komputerowych w trybie on-line</option>
+                                <option value="21">Wydawanie pakietów oprogramowania systemowego</option>
+                                <option value="22">Wydawanie pakietów oprogramowania użytkowego</option>
+                                <option value="23">Wydawanie oprogramowania komputerowego pobieranego z Internetu</option>
+                                <option value="24">Usługi doradztwa w sprawie sprzętu komputerowego</option>
+                                <option value="25">Usługi związane z oprogramowaniem</option>
+                                <option value="26">Usługi związane z doradztwem w zakresie oprogramowania</option>
+                                <option value="27">Usługi w zakresie instalowania oprogramowania</option>
+                                <option value="28">Usługi związane z zarządzaniem siecią i systemami informatycznymi</option>
+                                <option value="29">Wynajem nieruchomości</option>
+                                <option value="30">Świadczenie usług związanych z zakwaterowaniem</option>
+                                <option value="31">Badania naukowe</option>
+                                <option value="32">Wynajem środków transportu</option>
+                                <option value="33">Gastronomia (w zakresie sprzedaży napojów z zawartością alkoholu powyżej 1.5%)</option>
+                                <option value="34">Zwalczanie pożarów i zapobieganie im</option>
+                                <option value="35">Edukacja</option>
+                                <option value="36">Biblioteka, archiwum, muzeum</option>
+                                <option value="37">Prowadzenie działalności wytwórczej</option>
+                                <option value="38">Budownictwo</option>
+                                <option value="39">Sprzedaż biletów, żetonów, znaczków pocztowych</option>
+                                <option value="40">Gastronomia (z wyjątkiem alkoholu)</option>
+                                <option value="41">Handel</option>
+                                <option value="42">Rybołóstwo</option>
+                                <option value="43">Produkcja zwierzęca</option>
+                                <option value="44">Wytwór produktów roślinnych i zwierzęcych w sposób inny niż przemysłowy</option>
+                            </select>
+                            <span asp-validation-for="Input.TypeOfActivityId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <select asp-for="Input.TaxationTypeId" class="form-control" aria-required="true">
+                                 <option value="0" selected>Sposób opodatkowania</option>
+                                <option value="1">Skala podatkowa</option>
+                                <option value="2">Podatek liniowy</option>
+                                <option value="3">Ryczałt ewidencjonowany</option>
+                                <option value="4">Karta podatkowa</option>
+                            </select>
+                            <span asp-validation-for="Input.TaxationTypeId" class="text-danger"></span>
+                        </div>
+        
+                        <div class="mb-3">
+                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Hasło"/>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Powtórz hasło"/>
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Zarejestruj się</button>
                     </form>
-                }
-        </section>
-    </div>*@
-</div>
+                </div>
+            </div>
+    </center>
+    
+</section>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial"/>
