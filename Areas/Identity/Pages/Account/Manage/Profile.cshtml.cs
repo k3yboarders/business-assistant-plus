@@ -12,12 +12,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using CMP.Models;
 namespace CMP.Areas.Identity.Pages.Account.Manage
 {
-    public class ProfileModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public ProfileModel(
+        public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
         {

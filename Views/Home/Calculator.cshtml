@@ -1,10 +1,14 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using CMP.Models;
+@using Microsoft.AspNetCore.Identity
+@using CMP.Data
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
 @{
 	ViewData["Title"] = "Kalkulator podatkowy";
-	Layout = "_Layout";
+	Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+	ViewData["ActivePage"] = ManageNavPages.Calculator;
+	
 }
 @section Scripts
 {

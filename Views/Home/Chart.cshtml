@@ -1,8 +1,12 @@
+@using CMP.Models;
+@using Microsoft.AspNetCore.Identity
+@using CMP.Data
 @{
     ViewData["Title"] = "Wykres walut";
-    Layout = "_Layout";
+    Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
     string[] currencies = { "PLN", "EUR", "USD", "BTC" };
     string[] peroids = { "1W", "1M", "3M", "6M", "1Y" };
+    ViewData["ActivePage"] = ManageNavPages.Chart;
 }
 
 @section Scripts

@@ -1,29 +1,150 @@
-﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+﻿@using CMP.Models;
+@using Microsoft.AspNetCore.Identity
+@using CMP.Data
+@{
+    @*if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
     {
         Layout = (string)parentLayout;
     }
     else
     {
         Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
-    }
+    }*@
 }
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>@ViewData["Title"] - BusinessAssistant+</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
+    <link rel="icon" href="~/img/logo_without_text.png"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link href="~/css/profile.css" rel="stylesheet"/>
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body>
+@if (SignInManager.IsSignedIn(User))
+{
+    var applicationUser = await UserManager.GetUserAsync(User);
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" asp-area="" asp-controller="Home" asp-action="Index">BusinessAssistant+</a>
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <li class="d-none d-md-inline-block form-inline">
+                        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Witaj @applicationUser.FirstName @applicationUser.LastName!</a>
+                    </li>
+<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit" class="nav-link text-light" style="background: none; border: none;">Logout</button>
+                        </form>
+</div>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="index" asp-page="./Index">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            Dashboard
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Funkcje</div>
+                           <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Calculator">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-university"></i>
+                            </div>
+                            Kalkulator podatkowy
+                        </a>
+                           <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Chart">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-line-chart"></i>
+                            </div>
+                            Kursy walut
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Profil</div>
+                        <a class="nav-link @ManageNavPages.ProfileNavClass(ViewContext)" id="profile" asp-page="./Profile">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            Edytuj dane
+                        </a>
+                        <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            Email
+                        </a>
+                        <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-key"></i>
+                            </div>
+                            Zmień hasło
+                        </a>
+                        @if (hasExternalLogins)
+                        {
+                            <a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                Logowanie zewnętrzne
+                            </a>
+                        }
+                        <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-shield"></i>
+                            </div>
+                            Uwierzytelnianie dwuskładnikowe
+                        </a>
+                        <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa fa-info"></i>
+                            </div>
+                            Dane osobowe
+                        </a>
+                    </div>
+                </div>
 
-<h1>Zarządzaj swoim kontem</h1>
-
-<div>
-
-    <hr/>
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav"/>
+            </nav>
         </div>
-        <div class="col-md-9">
-            @RenderBody()
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    @RenderBody()
+                            <button onclick="topFunction()" id="scrollBtn" style="background: none; border:none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="red" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                                </svg>
+                            </button>
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">&copy; 2022 &middot; <a href="https://github.com/k3yboarders" target="_blank">k3yboarders</a></div>
+                        <div>
+                            <a asp-area="" asp-controller="Home" asp-action="Privacy">Polityka prywatności</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
-</div>
 
-@section Scripts {
-    @RenderSection("Scripts", false)
+    @await RenderSectionAsync("Scripts", false)
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/profile.js"></script>
 }
+else
+{
+    <p>Nie jesteś zalogowany!</p>
+}
+</body>
+</html>
