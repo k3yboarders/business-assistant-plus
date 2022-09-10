@@ -5,22 +5,29 @@
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
-<h3>@ViewData["Title"]</h3>
+<div class="space"></div>
 
-<div class="row">
-    <div class="col-md-6">
-<p>Twoje konto zawiera dane osobowe, które nam przekazałeś. Ta strona umożliwia pobranie lub usunięcie tych danych.</p>
-        <p>
-<strong>Usunięcie tych danych spowoduje trwałe usunięcie Twojego konta i nie będzie można go odzyskać.</strong>
-        </p>
-        <form id="download-data" asp-page="DownloadPersonalData" method="post">
-            <button class="btn btn-primary" type="submit">Pobierz dane</button>
-        </form>
-        <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Usuń konto</a>
-        </p>
+<center>
+    <h3>@ViewData["Title"]</h3>
+    <div class="row">
+        <p>Twoje konto zawiera dane osobowe, które nam przekazałeś. Ta strona umożliwia pobranie lub usunięcie tych danych.</p>
+            <p>
+                <strong>Usunięcie tych danych spowoduje trwałe usunięcie Twojego konta i nie będzie można go odzyskać.</strong>
+            </p>
     </div>
-</div>
+    <div class="row">
+        <div style="padding: 10px;">
+            <form id="download-data" asp-page="DownloadPersonalData" method="post">
+                <button class="btn btn-primary" type="submit">Pobierz dane</button>
+            </form>
+        </div>
+        <div>
+            <p>
+                <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Usuń konto</a>
+            </p>
+        </div>
+    </div>
+</center>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial"/>

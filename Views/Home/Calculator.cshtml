@@ -6,12 +6,8 @@
 
 @{
 	ViewData["Title"] = "Kalkulator podatkowy";
-	Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
-	ViewData["ActivePage"] = ManageNavPages.Calculator;
-	
 }
-@section Scripts
-{
+@section Scripts{
 	<script src="~/js/calculator.js" defer></script>
 }
 @if (SignInManager.IsSignedIn(User))

@@ -44,4 +44,13 @@
         <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\qrcode.min.js" />
         <_ContentIncludedByDefault Remove="wwwroot\lib\davidshimjs-qrcodejs-04f46c6\README.md" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Areas\Identity\Pages\Account\Manage\Profile.cshtml.cs">
+        <DependentUpon>Profile.cshtml</DependentUpon>
+      </Compile>
+      <Compile Update="Areas\Identity\Pages\Account\Manage\Index.cshtml.cs">
+        <DependentUpon>Index.cshtml</DependentUpon>
+      </Compile>
+    </ItemGroup>
 </Project>

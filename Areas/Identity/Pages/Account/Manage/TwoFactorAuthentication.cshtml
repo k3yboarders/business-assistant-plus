@@ -5,9 +5,8 @@
     ViewData["Title"] = "Uwierzytelnianie dwuskładnikowe (2FA)";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
-
+<div class="space"></div>
 <partial name="_StatusMessage" for="StatusMessage"/>
-<h3>@ViewData["Title"]</h3>
 @{
     var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
     @if (consentFeature?.CanTrack ?? true)
@@ -45,16 +44,24 @@
             <a asp-page="./Disable2fa" class="btn btn-primary">Wyłącz 2FA</a>
             <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Resetuj kody odzyskiwania</a>
         }
-
-        <h4>Authenticator app</h4>
+        <center>
+        <h3>Aplikacja 2FA</h3>
+        </center>
         @if (!Model.HasAuthenticator)
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Dodaj aplikację uwierzytelniającą</a>
+            <center>
+                            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Dodaj aplikację uwierzytelniającą</a>
+            </center>
+
         }
         else
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Skonfiguruj aplikację uwierzytelniającą</a>
-            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary">Zresetuj aplikację uwierzytelniającą</a>
+            <center>
+                            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Skonfiguruj aplikację uwierzytelniającą</a><br><br>
+                            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary">Zresetuj aplikację uwierzytelniającą</a>
+            </center>
+
+
         }
     }
     else

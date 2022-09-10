@@ -23,11 +23,11 @@
 <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>@ViewData["Title"] - BusinessAssistant+</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
     <link rel="icon" href="~/img/logo_without_text.png"/>
-
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
@@ -47,12 +47,14 @@
                       Menu
                       <i class="fas fa-bars"></i>
                   </button>
+
                   <div class="collapse navbar-collapse" id="navbarResponsive">
                       <ul class="navbar-nav ms-auto">
-                          
-                          <li class="nav-item"><a class="nav-link" href="#about">O nas</a></li>
+                          <li class="nav-item"><a class="nav-link text-light" href="#features">O projekcie</a></li>
+                          <li class="nav-item"><a class="nav-link text-light" href="#about">O nas</a></li>
+
                       </ul>
-                      <partial name="_LoginPartial"/>
+                                            <partial name="_LoginPartial"/>
                   </div>
               </div>
                   </nav>              
