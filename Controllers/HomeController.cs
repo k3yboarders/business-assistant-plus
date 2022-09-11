@@ -19,6 +19,13 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        var Quote = new List<Quote>();
+        var query = from b in _context.Quotes select b;
+        foreach (var item in query) Quote.Add(item);
+        Random r = new Random();
+        int x = r.Next(1, Quote.Count-1);
+        var result = Quote[x].QuoteText;
+        ViewBag.quote = result;
         return View();
     }
 

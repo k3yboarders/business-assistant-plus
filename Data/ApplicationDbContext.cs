@@ -14,4 +14,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     public DbSet<ApplicationUser>? ApplicationUser { get; set; }
     public DbSet<TypeOfActivity>? TypeOfActivity { get; set; }
+    public DbSet<Quote>? Quotes { get; set; }
 }

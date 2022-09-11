@@ -27,8 +27,8 @@
             <div class="text-center">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <h1 class="mx-auto my-0 text-uppercase"><!--cytat muska--></h1>
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">Elon Musk.</h2>
+                    <h3 class="mx-auto my-0 text-uppercase">"@ViewBag.quote"</h3>
+                    <h4 class="text-white-50 mx-auto mt-2 mb-5">Elon Musk.</h4>
                 }
                 else
                 {
