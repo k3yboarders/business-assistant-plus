@@ -5,30 +5,15 @@
     ViewData["Title"] = "Start";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-    <title>@ViewData["Title"] - BusinessAssistant+</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"/>
-    <link href="~/css/index.css" rel="stylesheet"/>
-</head>
-<body id="page-top">
-
-<!-- Masthead-->
 <header class="masthead">
     <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
         <div class="d-flex justify-content-center">
             <div class="text-center">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <h3 class="mx-auto my-0 text-uppercase">"@ViewBag.quote"</h3>
-                    <h4 class="text-white-50 mx-auto mt-2 mb-5">Elon Musk.</h4>
+                    <q class="mx-auto my-0 text-uppercase text-white fs-2">@ViewBag.quote</q>
+                    <h4 class="text-light mx-auto mt-2 mb-5">Elon Musk.</h4>
                 }
                 else
                 {
@@ -73,61 +58,12 @@
                 </div>
             </div>
         </div>
-        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-            <div class="col-xl-8 col-lg-7">
-                <img class="img-fluid mb-3 mb-lg-0" src="img/3.png" alt="...">
-            </div>
-            <div class="col-xl-4 col-lg-5">
-                <div class="text-center text-lg-left" style="margin-left: 10px;">
-                    <h4></h4>
-                    <p class="text-black-50 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 
-<section class="projects-section bg-light" id="about" style="padding-top: 0;">
+<section class="projects-section bg-light container" id="about" style="padding-top: 0;">
         <h2 style="text-align: center; padding-bottom: 20px;">O nas</h2>
-    <div class="container px-4 px-lg-5">
-        <!-- Featured Project Row-->
-        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-            <div class="col-xl-8 col-lg-7">
-                <img class="img-fluid mb-3 mb-lg-0" src="img/1.png" alt="...">
-            </div>
-            <div class="col-xl-4 col-lg-5">
-                <div class="text-center text-lg-left" style="margin-left: 10px;">
-                    <h4>Kalkulator podatkowy</h4>
-                    <p class="text-black-50 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-            <div class="col-xl-8 col-lg-7">
-                <img class="img-fluid mb-3 mb-lg-0" src="img/2.png" alt="...">
-            </div>
-            <div class="col-xl-4 col-lg-5">
-                <div class="text-center text-lg-left" style="margin-left: 10px;">
-                    <h4>Śledzenie walut</h4>
-                    <p class="text-black-50 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-            <div class="col-xl-8 col-lg-7">
-                <img class="img-fluid mb-3 mb-lg-0" src="img/3.png" alt="...">
-            </div>
-            <div class="col-xl-4 col-lg-5">
-                <div class="text-center text-lg-left" style="margin-left: 10px;">
-                    <h4></h4>
-                    <p class="text-black-50 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+	<img alt="Logo k3yboarders" src="~/img/k3yboarders.png" class="bg-dark float-start me-3">
+	<p class="text-black-50 mb-0 text-justify fs-3">Nasz zespół nazywa się k3yboarders. Jesteśmy młodą, dynamiczną drużyną. W skład k3yboarders na ten moment wchodzi grupa 4 osób. Naszym pierwszym projektem była gra o Harrym Potterze pod tytułem <em>Magic Tournament</em>. Obecnie pracujemy nad systemem <em>BusinessAssisstant+</em>, który ułatwia przedsiębiorcom zarządzanie małymi i średnimi firmami. Jako zespół bardzo cenimy sobie wolne (<em>ang. Free as in freedom</em>) oprogramowanie oraz szanujemy prywatność naszych użytkowników. Nasze projekty można znaleźć na naszym profilu w serwisie GitHub. Bardzo zachęcamy do śledzenia naszego profilu. Ciągle się rozwijamy dlatego prosimy o wyrozumiałość i życzymy efektywnego i przyjemnego korzystania z naszych narzędzi. W skład zespołu wchodzi Maksymilian Gala, Marcin Górowski, Tomasz Kulig i Seweryn Pajor.
+	</p>
 </section>
-
-
-
-</body>
-</html>

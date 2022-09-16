@@ -11567,7 +11567,10 @@ body {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
-  animation: bg 5s linear infinite alternate;
+  animation-name: bg;
+  animation-duration: 5s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
 }
 
 @keyframes bg  {
@@ -11578,7 +11581,7 @@ body {
   }
 
  to {
-    background-image: url("../img/2.png");
+    background-image: url("../img/3.png");
   }
 }
 
