@@ -1,8 +1,11 @@
+@page
+@model ChartModel
 @using CMP.Models;
 @using Microsoft.AspNetCore.Identity
 @using CMP.Data
 @{
     ViewData["Title"] = "Wykres walut";
+    ViewData["ActivePage"] = ManageNavPages.Chart;
     string[] currencies = { "PLN", "EUR", "USD", "BTC" };
     string[] peroids = { "1W", "1M", "3M", "6M", "1Y" };
 }

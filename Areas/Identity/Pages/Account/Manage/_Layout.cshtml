@@ -49,7 +49,7 @@
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
-                    <div class="nav">
+<div class="nav">
                         <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="index" asp-page="./Index">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
@@ -63,7 +63,7 @@
                             </div>
                             Kalkulator podatkowy
                         </a>
-                           <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Chart">
+                             <a class="nav-link @ManageNavPages.ChartNavClass(ViewContext)" id="chart" asp-page="./Chart">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-line-chart"></i>
                             </div>
@@ -109,7 +109,7 @@
                             </div>
                             Dane osobowe
                         </a>
-                    </div>
+                    </div>  
                 </div>
 
             </nav>
@@ -125,9 +125,9 @@
                             </button>
                 </div>
             </main>
-            <footer class="py-4 bg-light mt-auto">
+            <footer class="py-4 bg-dark mt-auto">
                 <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
+                    <div class="d-flex align-items-center text-light justify-content-between small">
                         <div class="text-muted">&copy; 2022 &middot; <a href="https://github.com/k3yboarders" target="_blank">k3yboarders</a></div>
                         <div>
                             <a asp-area="" asp-controller="Home" asp-action="Privacy">Polityka prywatności</a>

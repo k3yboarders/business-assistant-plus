@@ -5,7 +5,13 @@
     ViewData["Title"] = "Start";
 }
 
-
+<style>
+    body
+    {
+    background-color: #212529;
+    }
+    
+</style>
 <header class="masthead">
     <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
         <div class="d-flex justify-content-center">
@@ -20,7 +26,7 @@
                     <div class="lgimg">
                         <img src="img/logo_without_text.png" width="256px" height="256px"></img>
                     </div>
- 
+
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">Wszystko co jest Ci potrzebne do pracy w jednym miejscu. Nie czekaj!</h2>
                     <a class="btn btn-lg btn-primary" asp-area="Identity" asp-page="/Account/Register" role="button">Zarejestruj się już dziś</a>
                 }
@@ -29,9 +35,9 @@
         </div>
     </div>
 </header>
- 
-<section class="projects-section bg-light" id="features" style="padding-bottom: 0;">
-    <h2 style="text-align: center; padding-bottom: 20px;">O projekcie</h2>
+
+<section class="projects-section bg-dark" id="features" style="padding-bottom: 0; padding-top: 80px;">
+    <h2 style="text-align: center; padding-bottom: 50px;" class="text-light">O projekcie</h2>
     <div class="container px-4 px-lg-5">
         <!-- Featured Project Row-->
         <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
@@ -40,10 +46,12 @@
             </div>
             <div class="col-xl-4 col-lg-5">
                 <div class="text-center text-lg-left" style="margin-left: 10px;">
-                    <h4>Kalkulator podatkowy</h4>
-                    <p class="text-black-50 mb-0">Kalkulator podatkowy to inteligentne narzędzie do obliczania należnych podatków. Obecnie nasz kalkulator pozwoli ci na obliczenie polskich
-		      podatków PIT, VAT, składki zdrowotnej i innych. Dodatkowo program dostosowuje się do wybranego przy zakładaniu konta typu działalności oraz wybranemu w Urzędzie Skarbowym
-		    sposobu płacenia podatku PIT. Kalkulator podatkowy jest niezbędnym narzędziem każdego przedsiębiorcy pozwalającym zorientować się w skomplikowanym świecie polskiego prawa podatkowego.</p>
+                    <h4 class="text-light">Kalkulator podatkowy</h4>
+                    <p class="text-white-50 mb-0">
+                        Kalkulator podatkowy to inteligentne narzędzie do obliczania należnych podatków. Obecnie nasz kalkulator pozwoli ci na obliczenie polskich
+                        podatków PIT, VAT, składki zdrowotnej i innych. Dodatkowo program dostosowuje się do wybranego przy zakładaniu konta typu działalności oraz wybranemu w Urzędzie Skarbowym
+                        sposobu płacenia podatku PIT. Kalkulator podatkowy jest niezbędnym narzędziem każdego przedsiębiorcy pozwalającym zorientować się w skomplikowanym świecie polskiego prawa podatkowego.
+                    </p>
                 </div>
             </div>
         </div>
@@ -53,17 +61,30 @@
             </div>
             <div class="col-xl-4 col-lg-5">
                 <div class="text-center text-lg-left" style="margin-left: 10px;">
-                    <h4>Śledzenie kursu walut</h4>
-                    <p class="text-black-50 mb-0">Dzięki naszemu przyjemnemu dla oka narzędziu do śledzenia kursu walut już nigdy nie umknie ci spadek wartości polskiej złotówki czy wzrost franka szwajcarskiego. Dzięki profesjonalnie wyglądającym wykresom będziesz zawsze na bieżąco, dzięki czemu będziesz przygotowany na ewentualny kryzys, bądź wzrost gospodarczy. Dodatkowo wspieramy śledzenie kursu kryptowalut (obecnie wspierany jest BTC).</p>
+                    <h4 class="text-light">Śledzenie kursu walut</h4>
+                    <p class="text-white-50 mb-0">Dzięki naszemu przyjemnemu dla oka narzędziu do śledzenia kursu walut już nigdy nie umknie ci spadek wartości polskiej złotówki czy wzrost franka szwajcarskiego. Dzięki profesjonalnie wyglądającym wykresom będziesz zawsze na bieżąco, dzięki czemu będziesz przygotowany na ewentualny kryzys, bądź wzrost gospodarczy. Dodatkowo wspieramy śledzenie kursu kryptowalut (obecnie wspierany jest BTC).</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="projects-section bg-light container" id="about" style="padding-top: 0;">
-        <h2 style="text-align: center; padding-bottom: 20px;">O nas</h2>
-	<img alt="Logo k3yboarders" src="~/img/k3yboarders.png" class="bg-dark float-start me-3">
-	<p class="text-black-50 mb-0 text-justify fs-3">Nasz zespół nazywa się k3yboarders. Jesteśmy młodą, dynamiczną drużyną. W skład k3yboarders na ten moment wchodzi grupa 4 osób. Naszym pierwszym projektem była gra o Harrym Potterze pod tytułem <em>Magic Tournament</em>. Obecnie pracujemy nad systemem <em>BusinessAssisstant+</em>, który ułatwia przedsiębiorcom zarządzanie małymi i średnimi firmami. Jako zespół bardzo cenimy sobie wolne (<em>ang. Free as in freedom</em>) oprogramowanie oraz szanujemy prywatność naszych użytkowników. Nasze projekty można znaleźć na naszym profilu w serwisie GitHub. Bardzo zachęcamy do śledzenia naszego profilu. Ciągle się rozwijamy dlatego prosimy o wyrozumiałość i życzymy efektywnego i przyjemnego korzystania z naszych narzędzi. W skład zespołu wchodzi Maksymilian Gala, Marcin Górowski, Tomasz Kulig i Seweryn Pajor.
-	</p>
+<section class="projects-section bg-dark" id="about" style="padding-bottom: 0; padding-top: 20px;">
+    <h2 style="text-align: center; padding-bottom: 20px;" class="text-light">O nas</h2>
+    <div class="container px-4 px-lg-5">
+        <!-- Featured Project Row-->
+        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+            <div class="col-xl-8 col-lg-7">
+                <img class="img-fluid mb-3 mb-lg-0" src="~/img/k3yboarders.png" alt="...">
+            </div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="text-center text-lg-left" style="margin-left: 10px;">
+                    <h4 class="text-light">k3yboarders</h4>
+                    <p class="text-white-50 mb-0">
+                         Jesteśmy młodą, dynamiczną drużyną. W skład k3yboarders na ten moment wchodzi grupa 4 osób. Naszym pierwszym projektem była gra o Harrym Potterze pod tytułem <em>Magic Tournament</em>. Obecnie pracujemy nad systemem <em>BusinessAssisstant+</em>, który ułatwia przedsiębiorcom zarządzanie małymi i średnimi firmami. Jako zespół bardzo cenimy sobie wolne (<em>ang. Free as in freedom</em>) oprogramowanie oraz szanujemy prywatność naszych użytkowników. Nasze projekty można znaleźć na naszym profilu w serwisie GitHub. Bardzo zachęcamy do śledzenia naszego profilu. Ciągle się rozwijamy dlatego prosimy o wyrozumiałość i życzymy efektywnego i przyjemnego korzystania z naszych narzędzi. W skład zespołu wchodzi Maksymilian Gala, Marcin Górowski, Tomasz Kulig i Seweryn Pajor.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

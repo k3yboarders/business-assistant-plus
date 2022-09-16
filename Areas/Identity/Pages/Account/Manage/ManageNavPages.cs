@@ -61,6 +61,7 @@ public static class ManageNavPages
     /// </summary>
     public static string TwoFactorAuthentication => "TwoFactorAuthentication";
     public static string Profile => "Profile";
+    public static string Chart => "Chart";
 
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -73,6 +74,10 @@ public static class ManageNavPages
     public static string ProfileNavClass(ViewContext viewContext)
     {
         return PageNavClass(viewContext, Profile);
+    }
+    public static string ChartNavClass(ViewContext viewContext)
+    {
+        return PageNavClass(viewContext, Chart);
     }
 
     /// <summary>

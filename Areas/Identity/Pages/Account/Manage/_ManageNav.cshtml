@@ -27,8 +27,8 @@
         <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Dane osobowe</a>
     </li>
 </ul>
--->
-<a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="index" asp-page="./Index">
+-->                  <div class="nav">
+                        <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="index" asp-page="./Index">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
@@ -41,7 +41,7 @@
                             </div>
                             Kalkulator podatkowy
                         </a>
-                           <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Chart">
+                             <a class="nav-link @ManageNavPages.ChartNavClass(ViewContext)" id="chart" asp-page="./Chart">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-line-chart"></i>
                             </div>
@@ -87,3 +87,4 @@
                             </div>
                             Dane osobowe
                         </a>
+                    </div>
