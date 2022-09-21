@@ -3,21 +3,31 @@
 @{
     ViewData["Title"] = "Register confirmation";
 }
+<section class="projects-section bg-light">
+    <div class="container px-4 px-lg-5">
+        <center>
+            <div class="col-md-4">
+                <section>
+                    <h1>@ViewData["Title"]</h1>
+                    @{
+                        if (Model.DisplayConfirmAccountLink)
+                        {
+                            <p>
+                                <!--
+                                Ta aplikacja nie ma obecnie zarejestrowanego prawdziwego nadawcy poczty e-mail, zobacz <a href="https://aka.ms/aspaccountconf">te dokumenty</a>, aby dowiedzieć się, jak skonfigurować prawdziwego nadawcę poczty e-mail.
+                                Zwykle zostanie to wysłane e-mailem: --> <a id="confirm-link" href="@Model.EmailConfirmationUrl">Kliknij tutaj, aby potwierdzić swoje konto</a>
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                Sprawdź pocztę e-mail, aby potwierdzić swoje konto.
+                            </p>
+                        }
+                    }
 
-<h1>@ViewData["Title"]</h1>
-@{
-    if (Model.DisplayConfirmAccountLink)
-    {
-        <p>
-            <!--
-            Ta aplikacja nie ma obecnie zarejestrowanego prawdziwego nadawcy poczty e-mail, zobacz <a href="https://aka.ms/aspaccountconf">te dokumenty</a>, aby dowiedzieć się, jak skonfigurować prawdziwego nadawcę poczty e-mail.
-            Zwykle zostanie to wysłane e-mailem: --> <a id="confirm-link" href="@Model.EmailConfirmationUrl">Kliknij tutaj, aby potwierdzić swoje konto</a>
-        </p>
-    }
-    else
-    {
-        <p>
-            Sprawdź pocztę e-mail, aby potwierdzić swoje konto.
-        </p>
-    }
-}
+                </section>
+            </div>
+        </center>
+    </div>
+</section>

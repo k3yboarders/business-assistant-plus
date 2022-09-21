@@ -1,6 +1,4 @@
-﻿@using CMP.Models;
-@using Microsoft.AspNetCore.Identity
-@using CMP.Data
+﻿@using CMP.Models
 @{
     @*if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
     {
@@ -36,20 +34,20 @@
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" asp-area="" asp-controller="Home" asp-action="Index">BusinessAssistant+</a>
-<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <li class="d-none d-md-inline-block form-inline">
-                        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Witaj @applicationUser.FirstName @applicationUser.LastName!</a>
-                    </li>
-<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                            <button type="submit" class="nav-link text-light" style="background: none; border: none;">Logout</button>
-                        </form>
-</div>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <li class="d-none d-md-inline-block form-inline">
+                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Witaj @applicationUser.FirstName @applicationUser.LastName!</a>
+            </li>
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link text-light" style="background: none; border: none;">Logout</button>
+            </form>
+        </div>
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
-<div class="nav">
+                    <div class="nav">
                         <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="index" asp-page="./Index">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
@@ -57,17 +55,23 @@
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Funkcje</div>
-                           <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Calculator">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Calculator">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-university"></i>
                             </div>
                             Kalkulator podatkowy
                         </a>
-                             <a class="nav-link @ManageNavPages.ChartNavClass(ViewContext)" id="chart" asp-page="./Chart">
+                        <a class="nav-link @ManageNavPages.ChartNavClass(ViewContext)" id="chart" asp-page="./Chart">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-line-chart"></i>
                             </div>
                             Kursy walut
+                        </a>
+                        <a class="nav-link @ManageNavPages.CalculatorNavClass(ViewContext)" id="calculator" asp-page="./Calculator ">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa-solid fa-calculator"></i>
+                            </div>
+                            Kalkulator
                         </a>
                         <div class="sb-sidenav-menu-heading">Profil</div>
                         <a class="nav-link @ManageNavPages.ProfileNavClass(ViewContext)" id="profile" asp-page="./Profile">
@@ -109,7 +113,7 @@
                             </div>
                             Dane osobowe
                         </a>
-                    </div>  
+                    </div>
                 </div>
 
             </nav>
@@ -118,11 +122,11 @@
             <main>
                 <div class="container-fluid px-4">
                     @RenderBody()
-                            <button onclick="topFunction()" id="scrollBtn" style="background: none; border:none;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="red" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
-                                </svg>
-                            </button>
+                    <button onclick="topFunction()" id="scrollBtn" style="background: none; border:none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="red" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                        </svg>
+                    </button>
                 </div>
             </main>
             <footer class="py-4 bg-dark mt-auto">

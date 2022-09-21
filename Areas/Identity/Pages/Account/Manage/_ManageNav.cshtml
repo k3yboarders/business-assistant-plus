@@ -27,64 +27,71 @@
         <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Dane osobowe</a>
     </li>
 </ul>
--->                  <div class="nav">
-                        <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="index" asp-page="./Index">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-tachometer-alt"></i>
-                            </div>
-                            Dashboard
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Funkcje</div>
-                           <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Calculator">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-university"></i>
-                            </div>
-                            Kalkulator podatkowy
-                        </a>
-                             <a class="nav-link @ManageNavPages.ChartNavClass(ViewContext)" id="chart" asp-page="./Chart">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-line-chart"></i>
-                            </div>
-                            Kursy walut
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Profil</div>
-                        <a class="nav-link @ManageNavPages.ProfileNavClass(ViewContext)" id="profile" asp-page="./Profile">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-user"></i>
-                            </div>
-                            Edytuj dane
-                        </a>
-                        <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                            Email
-                        </a>
-                        <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-key"></i>
-                            </div>
-                            Zmień hasło
-                        </a>
-                        @if (hasExternalLogins)
-                        {
-                            <a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-table"></i>
-                                </div>
-                                Logowanie zewnętrzne
-                            </a>
-                        }
-                        <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-shield"></i>
-                            </div>
-                            Uwierzytelnianie dwuskładnikowe
-                        </a>
-                        <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">
-                            <div class="sb-nav-link-icon">
-                                <i class="fa fa-info"></i>
-                            </div>
-                            Dane osobowe
-                        </a>
-                    </div>
+-->
+<div class="nav">
+    <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="index" asp-page="./Index">
+        <div class="sb-nav-link-icon">
+            <i class="fas fa-tachometer-alt"></i>
+        </div>
+        Dashboard
+    </a>
+    <div class="sb-sidenav-menu-heading">Funkcje</div>
+    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Calculator">
+        <div class="sb-nav-link-icon">
+            <i class="fa fa-university"></i>
+        </div>
+        Kalkulator podatkowy
+    </a>
+    <a class="nav-link @ManageNavPages.ChartNavClass(ViewContext)" id="chart" asp-page="./Chart">
+        <div class="sb-nav-link-icon">
+            <i class="fa fa-line-chart"></i>
+        </div>
+        Kursy walut
+    </a>
+    <a class="nav-link @ManageNavPages.CalculatorNavClass(ViewContext)" id="calculator" asp-page="./Calculator ">
+        <div class="sb-nav-link-icon">
+            <i class="fa-solid fa-calculator"></i>
+        </div>
+        Kalkulator
+    </a>
+    <div class="sb-sidenav-menu-heading">Profil</div>
+    <a class="nav-link @ManageNavPages.ProfileNavClass(ViewContext)" id="profile" asp-page="./Profile">
+        <div class="sb-nav-link-icon">
+            <i class="fa fa-user"></i>
+        </div>
+        Edytuj dane
+    </a>
+    <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">
+        <div class="sb-nav-link-icon">
+            <i class="fa fa-envelope"></i>
+        </div>
+        Email
+    </a>
+    <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">
+        <div class="sb-nav-link-icon">
+            <i class="fa fa-key"></i>
+        </div>
+        Zmień hasło
+    </a>
+    @if (hasExternalLogins)
+    {
+        <a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">
+            <div class="sb-nav-link-icon">
+                <i class="fas fa-table"></i>
+            </div>
+            Logowanie zewnętrzne
+        </a>
+    }
+    <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">
+        <div class="sb-nav-link-icon">
+            <i class="fa fa-shield"></i>
+        </div>
+        Uwierzytelnianie dwuskładnikowe
+    </a>
+    <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">
+        <div class="sb-nav-link-icon">
+            <i class="fa fa-info"></i>
+        </div>
+        Dane osobowe
+    </a>
+</div>

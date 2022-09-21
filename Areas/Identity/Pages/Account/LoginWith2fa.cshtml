@@ -4,37 +4,46 @@
     ViewData["Title"] = "Uwierzytelnianie dwuskładnikowe";
 }
 
-<h1>@ViewData["Title"]</h1>
-<hr/>
-<p>Twoje konto jest chronione aplikacją uwierzytelniającą. Wpisz poniżej swój kod uwierzytelniający.</p>
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
-            <input asp-for="RememberMe" type="hidden"/>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="mb-3">
-                <label asp-for="Input.TwoFactorCode" class="form-label"></label>                
-                <input asp-for="Input.TwoFactorCode" class="form-control" autocomplete="off"/>
-                <span asp-validation-for="Input.TwoFactorCode" class="text-danger"></span>
+
+<section class="projects-section bg-light">
+    <div class="container px-4 px-lg-5">
+        <center>
+            <div class="col-md-4">
+                <section>
+                    <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+                        <h2>Zaloguj się kodem z aplikacji</h2>
+                        <hr/>
+                        <input asp-for="RememberMe" type="hidden"/>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <input asp-for="Input.TwoFactorCode" class="form-control" autocomplete="off" placeholder="Kod z aplikacji 2FA"/>
+                            <span asp-validation-for="Input.TwoFactorCode" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <div class="checkbox">
+                                <label asp-for="Input.RememberMachine" class="form-label">
+                                    <input asp-for="Input.RememberMachine"/>
+                                    @Html.DisplayNameFor(m => m.Input.RememberMachine)
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-100 btn btn-lg btn-primary">Zaloguj się</button>
+                        </div>
+                    </form>
+                </section>
             </div>
-            <div>
-                <div class="checkbox">
-                    <label asp-for="Input.RememberMachine" class="form-label">
-                        <input asp-for="Input.RememberMachine"/>
-                        @Html.DisplayNameFor(m => m.Input.RememberMachine)
-                    </label>
+                <div style="padding-top: 20px;">
+                    Nie masz dostępu do swojego urządzenia uwierzytelniającego? Możesz
+                    <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl">zalogować się za pomocą kodu odzyskiwania</a>.
                 </div>
-            </div>
-            <div>
-                <button type="submit" class="w-100 btn btn-lg btn-primary">Zaloguj się</button>
-            </div>
-        </form>
+        </center>
     </div>
-</div>
-<p>
-Nie masz dostępu do swojego urządzenia uwierzytelniającego? Możesz
-    <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl">zalować się za pomocą kodu odzyskiwania</a>.
-</p>
+
+</section>
+<div class="space"></div>
+<div class="space"></div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial"/>

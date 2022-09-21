@@ -3,8 +3,16 @@
 @{
     ViewData["Title"] = "Brak dostępu";
 }
-
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">Nie masz dostępu do tej strony!</p>
-</header>
+<section class="projects-section bg-light">
+    <center>
+        <div class="container px-4 px-lg-5">
+                <div class="col-md-4">
+                    <h1 class="text-danger">@ViewData["Title"]</h1>
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        Nie masz dostępu do tej strony!
+                    </div>
+                </div>
+            </div>
+    </center>
+</section>
