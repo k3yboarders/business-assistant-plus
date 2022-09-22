@@ -1,15 +1,48 @@
 @page
-@model CalculatorModel
+@model ChartModel
 @using CMP.Models;
 @using Microsoft.AspNetCore.Identity
 @using CMP.Data
 @{
-    ViewData["Title"] = "Kalkulaotr";
-    ViewData["ActivePage"] = ManageNavPages.Calculator;
+    ViewData["Title"] = "Wykres walut";
+    ViewData["ActivePage"] = ManageNavPages.Chart;
+    string[] currencies = { "PLN", "EUR", "USD", "BTC" };
+    string[] peroids = { "1W", "1M", "3M", "6M", "1Y" };
 }
 
 @section Scripts
 {
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.0.1/luxon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-luxon/1.2.0/chartjs-adapter-luxon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script>
+        const timePeroids = @Html.Raw(Json.Serialize(peroids));
+        const currencies = @Html.Raw(Json.Serialize(currencies));
+    </script>
+    <script src="@Url.Content("~/js/charts.js")"></script>
 }
 
+ <div class="row align-items-start m-4">
+    @for(var i = 0; i < 2; i++)
+    {
+      <div class="col">
+        <select class="form-select currency-select" aria-label="Default select example">
+          @foreach (var currency in currencies)
+          {
+            <option value="@currency">@currency</option>
+          }
+        </select>
+      </div>
+    }
+  </div>
+
+<ul class="nav nav-pills justify-content-center" id="peroid-tablist" role="tablist">
+    @foreach (var peroid in peroids)
+    {
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-@peroid-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">@peroid</button>
+        </li>
+    }
+</ul>
+<canvas id="currencyChart" width="200" height="50"></canvas>

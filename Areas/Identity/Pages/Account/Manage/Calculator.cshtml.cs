@@ -11,16 +11,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CMP.Areas.Identity.Pages.Account.Manage;
 
-public class CalculatorModel : PageModel
+public class ChartModel : PageModel
 {
-    private readonly ILogger<CalculatorModel> _logger;
+    private readonly ILogger<ChartModel> _logger;
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public CalculatorModel(
+    public ChartModel(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
-        ILogger<CalculatorModel> logger)
+        ILogger<ChartModel> logger)
     {
         _userManager = userManager;
         _signInManager = signInManager;
