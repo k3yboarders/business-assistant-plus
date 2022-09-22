@@ -3,11 +3,25 @@
 @using CMP.Models;
 @using Microsoft.AspNetCore.Identity
 @using CMP.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @{
     ViewData["Title"] = "Wykres walut";
     ViewData["ActivePage"] = ManageNavPages.Chart;
     string[] currencies = { "PLN", "EUR", "USD", "BTC" };
     string[] peroids = { "1W", "1M", "3M", "6M", "1Y" };
+    string theme = "";
+    if (SignInManager.IsSignedIn(User))
+    {
+        var applicationUser = await UserManager.GetUserAsync(User);
+        theme = "theme-" + applicationUser.ThemeId;
+            
+    }
+    else
+    {
+        theme = "";
+    }
 }
 
 @section Scripts
@@ -27,7 +41,7 @@
     @for(var i = 0; i < 2; i++)
     {
       <div class="col">
-        <select class="form-select currency-select" aria-label="Default select example">
+        <select class="form-select currency-select @theme" aria-label="Default select example">
           @foreach (var currency in currencies)
           {
             <option value="@currency">@currency</option>

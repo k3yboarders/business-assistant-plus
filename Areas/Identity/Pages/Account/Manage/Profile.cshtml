@@ -11,6 +11,17 @@
 
     Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
     ViewData["ActivePage"] = ManageNavPages.Profile;
+    string theme = "";
+    if (SignInManager.IsSignedIn(User))
+    {
+        var applicationUser = await UserManager.GetUserAsync(User);
+        theme = "theme-" + applicationUser.ThemeId;
+            
+    }
+    else
+    {
+        theme = "";
+    }
 }
 @if (SignInManager.IsSignedIn(User))
 {
@@ -77,63 +88,63 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="mb-3 col">
                 <label asp-for="Username" class="form-label"></label>
-                <input asp-for="Username" class="form-control" disabled/>
+                <input asp-for="Username" class="form-control @theme" disabled/>
             </div>
             <div class="mb-3 col">
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <input asp-for="Input.PhoneNumber" class="form-control" value="@applicationUser.PhoneNumber"/>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                <label asp-for="Input.ThemeId" class="form-label"></label>
+                <select asp-for="Input.ThemeId" class="form-control @theme" aria-required="true">
+                    @for (var i = 0; i <= 1; i++)
+                    {
+                        if (i == applicationUser.ThemeId)
+                        {
+                            <option value="@i" selected>@themes[i]</option>
+                        }
+                        else
+                        {
+                            <option value="@i">@themes[i]</option>
+                        }
+                    }
+
+                </select>
+                <span asp-validation-for="Input.ThemeId" class="text-danger"></span>
             </div>
         </div>
         <div class="row">
             <div class="mb-3 col">
                 <label asp-for="Input.FirstName" class="form-label"></label>
-                <input asp-for="Input.FirstName" class="form-control" aria-required="true" value="@applicationUser.FirstName"/>
+                <input asp-for="Input.FirstName" class="form-control @theme" aria-required="true" value="@applicationUser.FirstName"/>
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
 
             <div class="mb-3 col">
                 <label asp-for="Input.LastName" class="form-label"></label>
-                <input asp-for="Input.LastName" class="form-control" aria-required="true" value="@applicationUser.LastName"/>
+                <input asp-for="Input.LastName" class="form-control @theme" aria-required="true" value="@applicationUser.LastName"/>
                 <span asp-validation-for="Input.LastName" class="text-danger"></span>
             </div>
-        </div>            <!--
+        </div> <!--
         <div class="row">
 
             <div class="mb-3 col">
                 <label asp-for="Input.BirthDate" class="form-label"></label>
-                <input asp-for="Input.BirthDate" class="form-control" aria-required="true" value="@applicationUser.BirthDate"/>
+                <input asp-for="Input.BirthDate" class="form-control @theme" aria-required="true" value="@applicationUser.BirthDate"/>
                 <span asp-validation-for="Input.BirthDate" class="text-danger"></span>
             </div>
  
-                        <div class="mb-3 col">
-                            <label asp-for="Input.ThemeId" class="form-label"></label>
-                            <select asp-for="Input.ThemeId" class="form-control" aria-required="true">
-                                @for (var i = 0; i <= 1; i++)
-                                {
-                                    if (i == applicationUser.ThemeId)
-                                    {
-                                        <option value="@i" selected>@themes[i]</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@i">@themes[i]</option>
-                                    }
-                                }
-            
-                            </select>
-                            <span asp-validation-for="Input.ThemeId" class="text-danger"></span>
-                        </div>
+            <div class="mb-3 col">
+                <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control @theme" value="@applicationUser.PhoneNumber"/>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
             <div class="mb-3 col">
                 <label asp-for="Input.Fax" class="form-label"></label>
-                <input asp-for="Input.Fax" class="form-control" aria-required="true" value="@applicationUser.Fax"/>
+                <input asp-for="Input.Fax" class="form-control" @theme aria-required="true" value="@applicationUser.Fax"/>
                 <span asp-validation-for="Input.Fax" class="text-danger"></span>
             </div>
         </div>           -->
         <div class="row">
             <div class="mb-3 col">
                 <label asp-for="Input.TypeOfActivityId"></label>
-                <select asp-for="Input.TypeOfActivityId" class="form-control" aria-required="true">
+                <select asp-for="Input.TypeOfActivityId" class="form-control @theme" aria-required="true">
                     @for (var i = 1; i <= 44; i++)
                     {
                         if (i == applicationUser.TypeOfActivityId)
@@ -151,7 +162,7 @@
             </div>
             <div class="mb-3 col">
                 <label asp-for="Input.TaxationTypeId" class="form-label"></label>
-                <select asp-for="Input.TaxationTypeId" class="form-control" aria-required="true">
+                <select asp-for="Input.TaxationTypeId" class="form-control @theme" aria-required="true">
                     @for (var i = 1; i <= 4; i++)
                     {
                         if (i == applicationUser.TaxationTypeId)
@@ -172,13 +183,13 @@
         <div class="row">
 
         </div>
-            <center>
-        <div class="row w-25">
+        <center>
+            <div class="row w-25">
 
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-success">Zatwierdź</button>
+                <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-success">Zatwierdź</button>
 
-        </div>
-            </center>
+            </div>
+        </center>
 
     </form>
 }

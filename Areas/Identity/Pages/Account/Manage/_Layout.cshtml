@@ -8,6 +8,17 @@
     {
         Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
     }*@
+    string theme = "";
+    if (SignInManager.IsSignedIn(User))
+    {
+        var applicationUser = await UserManager.GetUserAsync(User);
+        theme = "theme-" + applicationUser.ThemeId;
+            
+    }
+    else
+    {
+        theme = "";
+    }
 }
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -27,7 +38,7 @@
     <link href="https://startbootstrap.github.io/startbootstrap-sb-admin/css/styles.css" rel="stylesheet"/>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="@theme">
 @if (SignInManager.IsSignedIn(User))
 {
     var applicationUser = await UserManager.GetUserAsync(User);
@@ -132,7 +143,7 @@
             <footer class="py-4 bg-dark mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center text-light justify-content-between small">
-                        <div class="text-muted">&copy; 2022 &middot; <a href="https://github.com/k3yboarders" target="_blank">k3yboarders</a></div>
+                        <div class="text-muted" class="text-light">&copy; 2022 &middot; <a href="https://github.com/k3yboarders" target="_blank">k3yboarders</a></div>
                         <div>
                             <a asp-area="" asp-controller="Home" asp-action="Privacy">Polityka prywatności</a>
                         </div>
