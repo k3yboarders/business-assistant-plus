@@ -27,7 +27,7 @@
                         </div>
                         <div class="mb-3">
                             <select asp-for="Input.TypeOfActivityId" class="form-control" aria-required="true">
-                                <option value="0" selected>Rodzaj działalności</option>
+                                <option value="" selected disabled hidden>Rodzaj działalności</option>
                                 <option value="1" >Lekarz</option>
                                 <option value="2">Lekarz stomatologii</option>
                                 <option value="3">Weterynarz</option>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="mb-3">
                             <select asp-for="Input.TaxationTypeId" class="form-control" aria-required="true">
-                                 <option value="0" selected>Sposób opodatkowania</option>
+                                <option value="" selected disabled hidden>Sposób opodatkowania</option>
                                 <option value="1">Skala podatkowa</option>
                                 <option value="2">Podatek liniowy</option>
                                 <option value="3">Ryczałt ewidencjonowany</option>
