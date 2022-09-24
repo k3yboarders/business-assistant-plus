@@ -39,6 +39,11 @@ public class HomeController : Controller
         ViewBag.ListOfTypes = ActivityTypes;
         return View();
     }
+
+    public IActionResult RegularCalculator()
+    {
+        return View();
+    }
     
     
     public IActionResult Privacy()

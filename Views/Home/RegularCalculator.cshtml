@@ -1,0 +1,78 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+	ViewData["Title"] = "Kalkulator";
+}
+
+@section Scripts{
+	<script src="~/js/regular-calculator.js" defer></script>
+}
+@section css{
+	<link rel="stylesheet" href="~/css/regular-calculator.css">	
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+    <div class="mt-5 pt-5 container mb-5">
+        <input type="text" id="display" class="form-control fs-3 mt-5" readonly>
+        <div id="buttons">
+	  <div class="row mb-1 mt-2 gx-1">
+                <input type="radio" class="base col-sm btn" name="base" id="systemDEC" value="10" checked>
+                <input type="radio" class="base col-sm btn" name="base" id="systemBIN" value="2">
+                <input type="radio" class="base col-sm btn" name="base" id="systemHEX" value="16">
+                <input type="radio" class="base col-sm btn" name="base" id="systemOCT" value="8">
+	  </div>
+	  <div class="row mb-1 mt-2 fs-4 gx-1 fw-bold">
+                <label class="string col-sm text-center" for="baseDEC">DEC</label>
+                <label class="string col-sm text-center" for="baseBIN">BIN</label>
+                <label class="string col-sm text-center" for="baseHEX">HEX</label>
+                <label class="string col-sm text-center" for="baseOCT">OCT</label>
+	  </div>
+	  <div class="row gx-1 fs-4">
+                <button id="clear" class="col-sm btn btn-outline-info">CE</button>
+                <button class="input col-sm btn btn-outline-info" id="potega">^</button>
+                <button id="sqrt" class="col-sm btn btn-outline-info">&#8730;</button>
+                <button id="pr" class="col-sm btn btn-outline-info">%</button>
+	  </div>
+	  <div class="row gx-1 fs-4">
+                <button id="mr" class="col-sm btn btn-outline-info">MR</button>
+                <button id="mc" class="col-sm btn btn-outline-info">MC</button>
+                <button id="mm" class="col-sm btn btn-outline-info">M-</button>
+                <button id="mp" class="col-sm btn btn-outline-info">M+</button>
+	  </div>
+	  <div class="row gx-1 fs-4">
+                <button class="input col-sm btn btn-outline-info" id="bd">&divide;</button>
+                <button class="input col-sm btn btn-outline-info" id="b7">7</button>
+                <button class="input col-sm btn btn-outline-info" id="b8">8</button>
+                <button class="input col-sm btn btn-outline-info" id="b9">9</button>
+	  </div>
+	  <div class="row gx-1 fs-4">
+                <button class="input col-sm btn btn-outline-info" id="br">&times;</button>
+                <button class="input col-sm btn btn-outline-info" id="b4">4</button>
+                <button class="input col-sm btn btn-outline-info" id="b5">5</button>
+                <button class="input col-sm btn btn-outline-info" id="b6">6</button>
+	  </div>
+	  <div class="row gx-1 fs-4">
+                <button class="input col-sm btn btn-outline-info" id="bm">-</button>
+                <button class="input col-sm btn btn-outline-info" id="b1">1</button>
+                <button class="input col-sm btn btn-outline-info" id="b2">2</button>
+                <button class="input col-sm btn btn-outline-info" id="b3">3</button>
+	  </div>
+	  <div class="row gx-1 fs-4">
+                <button class="input col-sm btn btn-outline-info" id="bp">+</button>
+                <button class="input col-sm btn btn-outline-info" id="b0">0</button>
+                <button class="input col-sm btn btn-outline-info" id="kropka">.</button>
+                <button id="equal" class="col-sm btn btn-outline-info">=</button>
+	   </div>
+	   <div class="row gx-1 fs-4 last-row">
+                <button id="log" class="col-sm btn btn-outline-info">log x</button>
+                <button id="factorial" class="col-sm btn btn-outline-info">x!</button>
+	   </div>
+        </div>
+    </div>
+ } else {
+    <h1>Nie jesteś zalogowany</h1>
+ }
