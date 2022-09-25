@@ -1,13 +1,6 @@
-﻿@using CMP.Models
+﻿@using Microsoft.AspNetCore.Identity
+@using CMP.Models
 @{
-    @*if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
-    {
-        Layout = (string)parentLayout;
-    }
-    else
-    {
-        Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
-    }*@
     string theme = "";
     if (SignInManager.IsSignedIn(User))
     {
@@ -22,9 +15,6 @@
 }
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@{
-    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
-}
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -43,7 +33,6 @@
 {
     var applicationUser = await UserManager.GetUserAsync(User);
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" asp-area="" asp-controller="Home" asp-action="Index">BusinessAssistant+</a>
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <li class="d-none d-md-inline-block form-inline">
@@ -59,66 +48,57 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="index" asp-page="./Index">
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Funkcje</div>
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Calculator">
+                        <a class="nav-link" asp-controller="Home" asp-action="Calculator">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-university"></i>
                             </div>
                             Kalkulator podatkowy
                         </a>
-                        <a class="nav-link @ManageNavPages.ChartNavClass(ViewContext)" id="chart" asp-page="./Chart">
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Chart">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-line-chart"></i>
                             </div>
                             Kursy walut
                         </a>
-                        <a class="nav-link @ManageNavPages.CalculatorNavClass(ViewContext)" asp-controller="Home" id="calculator" asp-action="RegularCalculator">
+                        <a class="nav-link" asp-controller="Home" asp-action="RegularCalculator">
                             <div class="sb-nav-link-icon">
                                 <i class="fa-solid fa-calculator"></i>
                             </div>
                             Kalkulator
                         </a>
                         <div class="sb-sidenav-menu-heading">Profil</div>
-                        <a class="nav-link @ManageNavPages.ProfileNavClass(ViewContext)" id="profile" asp-page="./Profile">
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Profile">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-user"></i>
                             </div>
                             Edytuj dane
                         </a>
-                        <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Email">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-envelope"></i>
                             </div>
                             Email
                         </a>
-                        <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/ChangePassword">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-key"></i>
                             </div>
                             Zmień hasło
                         </a>
-                        @if (hasExternalLogins)
-                        {
-                            <a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-table"></i>
-                                </div>
-                                Logowanie zewnętrzne
-                            </a>
-                        }
-                        <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/TwoFactorAuthentication">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-shield"></i>
                             </div>
                             Uwierzytelnianie dwuskładnikowe
                         </a>
-                        <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/PersonalData">
                             <div class="sb-nav-link-icon">
                                 <i class="fa fa-info"></i>
                             </div>
@@ -154,8 +134,13 @@
     </div>
 
     @await RenderSectionAsync("Scripts", false)
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/profile.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script src="~/js/scroll.js" asp-append-version="true"></script>
+
 }
 else
 {
