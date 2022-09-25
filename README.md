@@ -51,7 +51,7 @@ dotnet watch
 
 ## Bootstrap themes notice <a name="themes"></a>
 We used Bootstrap in our project published under MIT Licence:
-- [Bootstrap v 5.1.3](https://getbootstrap.com)
+- [Bootstrap v5.1.3](https://getbootstrap.com)
 - [SB Admin](https://github.com/startbootstrap/startbootstrap-sb-admin)
 - [Grayscale](https://github.com/startbootstrap/startbootstrap-grayscale)
 
