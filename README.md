@@ -10,6 +10,7 @@ A simple company management panel for modern entrepreneurs in the browser. Acces
 
 1. [Features](#Features)
 2. [Building](#building)
+3. [Bootstrap themes notice](#themes)
 
 ## Features <a name="Features"></a>
 
@@ -47,3 +48,8 @@ dotnet watch
 ```
 
 6. You should see your browser opened with the assistant
+
+## Bootstrap themes notice <a name="themes"></a>
+We use 2 bootstrap themes in our project published under MIT Licence:
+- [SB Admin](https://github.com/startbootstrap/startbootstrap-sb-admin)
+- [Grayscale](https://github.com/startbootstrap/startbootstrap-grayscale)
