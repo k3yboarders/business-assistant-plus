@@ -50,9 +50,8 @@ dotnet watch
 6. You should see your browser opened with the assistant
 
 ## Bootstrap themes notice <a name="themes"></a>
-We use 2 Bootstrap themes in our project published under MIT Licence:
+We used Bootstrap in our project published under MIT Licence:
+- [Bootstrap v 5.1.3](https://getbootstrap.com)
 - [SB Admin](https://github.com/startbootstrap/startbootstrap-sb-admin)
 - [Grayscale](https://github.com/startbootstrap/startbootstrap-grayscale)
-##
-We also used Bootstrap version 5.1.3:
-- [Bootstrap](https://getbootstrap.com)
+
