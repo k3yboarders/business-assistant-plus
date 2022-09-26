@@ -9,7 +9,7 @@
 @{
     ViewData["Title"] = "Profil";
 
-    Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+    Layout = "_LayoutProfile";
     ViewData["ActivePage"] = ManageNavPages.Profile;
     string theme = "";
     if (SignInManager.IsSignedIn(User))
