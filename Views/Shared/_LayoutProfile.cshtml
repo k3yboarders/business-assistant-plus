@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link href="https://startbootstrap.github.io/startbootstrap-sb-admin/css/styles.css" rel="stylesheet"/>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    @await RenderSectionAsync("css", false)
 </head>
 <body class="@theme">
 @if (SignInManager.IsSignedIn(User))

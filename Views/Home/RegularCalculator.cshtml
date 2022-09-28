@@ -4,6 +4,7 @@
 
 @{
 	ViewData["Title"] = "Kalkulator";
+        Layout="_LayoutProfile";
 }
 
 @section Scripts{
@@ -17,7 +18,7 @@
 {
 
     <div class="mt-5 pt-5 container mb-5">
-        <input type="text" id="display" class="form-control fs-3 mt-5" readonly>
+        <input type="text" id="display" class="form-control fs-3 mt-5" readonly autofocus>
         <div id="buttons">
 	  <div class="row mb-1 mt-2 gx-1">
                 <input type="radio" class="base col-sm btn" name="base" id="systemDEC" value="10" checked>
