@@ -70,6 +70,10 @@ class CurrencyChart extends Chart {
             this.updateCurrency(i, this.selects[i])
             this.selects[i].addEventListener('change', this.updateCurrency.bind(this, i, this.selects[i]));
         }
+        this.swapable = true;
+        this.selects[1].value = currencies[1];
+        this.exchangeValues[1] = currencies[1];
+        this.swapCurrency();
 
         this.getPillElement(timePeroids[indexController]).classList.add('active');
         this.getExchangeRate();
@@ -83,17 +87,23 @@ class CurrencyChart extends Chart {
     }
 
     swapCurrency() {
-        for(let i = 0; i < 2; i++) {
-            if(this.selects[i] == this.exchangeValues[i]) {
-                console.log('yes');
-            }
+        if(this.selects[0].value == this.exchangeValues[0])
+        if(this.selects[0].value == this.selects[1].value) {
+            this.selects[0].value = this.exchangeValues[1];
+            this.exchangeValues[0] = this.exchangeValues[1];
+        }
+        if(this.selects[1].value == this.exchangeValues[1])
+        if(this.selects[1].value == this.selects[0].value) {
+            this.selects[1].value = this.exchangeValues[0];
+            this.exchangeValues[1] = this.exchangeValues[0];
         }
     }
 
     updateCurrency(index, element) {
-        this.exchangeValues[index] = element.value;
         /// TODO Finish swaping currencies
-        //this.swapCurrency();
+        if(this.swapable)
+            this.swapCurrency();
+        this.exchangeValues[index] = element.value;
         this.getExchangeRate();
     }
 
@@ -132,7 +142,7 @@ class CurrencyChart extends Chart {
     getExchangeRate() {
       this.currentExchange = `${this.exchangeValues[0]}-${this.exchangeValues[1]}`;
       if(exchageRates[this.currentExchange] == undefined) {
-        let url = `https://api.exchangerate.host/timeseries?start_date=${luxon.DateTime.now().minus({years: 1})}&end_date=${luxon.DateTime.now().toISODate()}&symbols=${this.exchangeValues[1]}&base=${this.exchangeValues[0]}`;
+        let url = `https://api.exchangerate.host/timeseries?start_date=${luxon.DateTime.now().minus({years: 1}).toISODate()}&end_date=${luxon.DateTime.now().toISODate()}&symbols=${this.exchangeValues[1]}&base=${this.exchangeValues[0]}`;
         fetch(`${url}`)
             .then(res => res.json())
             .then((out) => {
