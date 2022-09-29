@@ -103,4 +103,7 @@ input.theme-1, select.theme-1, input:focus.theme-1, select:focus.theme-1
     background-color: #212529 !important;
     color: white;
 }
- 
+td.theme-1
+{
+    color: white !important;
+}

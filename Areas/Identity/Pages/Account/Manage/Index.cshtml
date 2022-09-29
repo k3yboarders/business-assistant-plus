@@ -1,8 +1,6 @@
 ﻿@page
+@using CMP.Models
 @model IndexModel
-@using CMP.Models;
-@using Microsoft.AspNetCore.Identity
-@using CMP.Data
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
@@ -13,5 +11,43 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-    
+    <div class="row" style="margin-top: 50px !important;">
+        <div class="col-lg-4">
+            <center>
+                <div class="lgimg">
+                    <img src="~/img/ca.png" width="128" height="128"/>
+                </div>
+
+                <h2>Kalkulator podatkowy</h2>
+                <p>Policz swoje podatki.</p>
+                <p>
+                    <a class="btn btn-lg btn-primary" asp-controller="Home" asp-action="Calculator" role="button">Sprawdź</a>
+                </p>
+            </center>
+        </div>
+        <div class="col-lg-4">
+            <center>
+                <div class="lgimg">
+                    <img src="~/img/ch.png" width="128" height="128"/>
+                </div>
+                <h2>Kursy walut</h2>
+                <p>Sprawdź aktualne kursy walut.</p>
+                <p>
+                    <a class="btn btn-lg btn-primary" asp-area="Identity" asp-page="/Account/Manage/Chart">Sprawdź</a>
+                </p>
+            </center>
+        </div>
+        <div class="col-lg-4">
+            <center>
+                <div class="lgimg">
+                    <img src="~/img/rc.png" width="128" height="128"/>
+                </div>
+                <h2>Kalkulator</h2>
+                <p>Masz problem z działaniami matematycznymi?</p>
+                <p>
+                    <a class="btn btn-lg btn-primary" asp-controller="Home" asp-action="RegularCalculator" role="button">Sprawdź</a>
+                </p>
+            </center>
+        </div>
+    </div>
 }
